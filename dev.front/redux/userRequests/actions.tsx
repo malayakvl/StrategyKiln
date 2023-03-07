@@ -153,9 +153,6 @@ export const fetchStatsAction: any = createAction(
       getState: () => State.Root
     ): Promise<{ data: any }> => {
       const state = getState();
-      // const { limit, offset, sort, column, query, filters } =
-      //   paginationSelectorFactory(PaginationType.USERREQUESTS)(state);
-      // const queryFilter = JSON.stringify(filters);
       dispatch(showLoaderAction(true));
       return axios
         .get(`${baseUrl}/user-requests/statistic`, {
@@ -163,7 +160,7 @@ export const fetchStatsAction: any = createAction(
             ...authHeader(state.user.user.email),
           },
         })
-        .then((res: any) => {
+        .then(() => {
           dispatch(showLoaderAction(false));
           return {
             data: {},

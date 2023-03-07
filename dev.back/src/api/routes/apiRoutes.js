@@ -41,7 +41,7 @@ apiRoutes.get('/settings/fetch-item', SettingsController.getSettingsData);
 apiRoutes.post('/settings', SettingsController.submitSettingsData);
 apiRoutes.get('/user-requests/fetch-items', SlideController.fetchItems);
 apiRoutes.route('/user-requests/fetch-item/:id').get(SlideController.fetchItem);
-apiRoutes.get('/user-requests/statistic', DashboardController.testData);
+apiRoutes.get('/user-requests/statistic', DashboardController.getStatsData);
 apiRoutes.post('/user-requests/bulk-delete', SlideController.bulkDelete);
 
 apiRoutes.get('/profile', TestController.testData);

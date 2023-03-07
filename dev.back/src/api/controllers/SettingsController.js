@@ -1,4 +1,3 @@
-import multer from 'multer';
 import settingsModel from '../models/Settings.js';
 
 class SettingsController {
@@ -7,7 +6,6 @@ class SettingsController {
             return res.status(401).json('Access deny');
         } else {
             const data = await settingsModel.getSettingsData();
-            console.log('data', data);
             return res.status(200).json({ data });
         }
     }

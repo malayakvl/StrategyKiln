@@ -11,19 +11,19 @@ export default function HeaderStats() {
           <div>
             {/* Card stats */}
             <div className="flex flex-wrap">
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                <CardStats
-                  statSubtitle="ALL REQUESTS"
-                  statTitle="350,897"
-                  statArrow="up"
-                  statPercent="3.48"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
-                  statIconName="far fa-chart-bar"
-                  statIconColor="bg-red-500"
-                />
-              </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+              {/*<div className="w-full lg:w-6/12 xl:w-3/12 px-3">*/}
+              {/*  <CardStats*/}
+              {/*    statSubtitle="ALL REQUESTS"*/}
+              {/*    statTitle="350,897"*/}
+              {/*    statArrow="up"*/}
+              {/*    statPercent="3.48"*/}
+              {/*    statPercentColor="text-emerald-500"*/}
+              {/*    statDescripiron="Since last month"*/}
+              {/*    statIconName="far fa-chart-bar"*/}
+              {/*    statIconColor="bg-red-500"*/}
+              {/*  />*/}
+              {/*</div>*/}
+              <div className="w-full lg:w-6/12 xl:w-4/12 px-4">
                 <CardStats
                   statSubtitle="PER WEEK"
                   statTitle="350,897"
@@ -35,7 +35,7 @@ export default function HeaderStats() {
                   statIconColor="bg-red-500"
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+              <div className="w-full lg:w-6/12 xl:w-4/12 px-4">
                 <CardStats
                   statSubtitle="PER MONTH"
                   statTitle="2,356"
@@ -47,7 +47,7 @@ export default function HeaderStats() {
                   statIconColor="bg-orange-500"
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+              <div className="w-full lg:w-6/12 xl:w-4/12 px-4">
                 <CardStats
                   statSubtitle="LATEST LOGIN"
                   statTitle="12.12.2022"

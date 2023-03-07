@@ -5,28 +5,22 @@ export default function CardLineChart() {
   React.useEffect(() => {
     const DATA_COUNT = 12;
     const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
-    // const labels = Utils.months({count: 7});
-    // const data = {
-    //   labels: labels,
-    //   datasets: [
-    //     {
-    //       label: 'Dataset 1',
-    //       data: Utils.numbers(NUMBER_CFG),
-    //       borderColor: Utils.CHART_COLORS.red,
-    //       backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-    //     },
-    //     {
-    //       label: 'Dataset 2',
-    //       data: Utils.numbers(NUMBER_CFG),
-    //       borderColor: Utils.CHART_COLORS.blue,
-    //       backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
-    //     }
-    //   ]
-    // };
     const configBar = {
       type: "bar",
       data: {
-        labels: ["January", "February", "March", "April", "May", "June"],
+        labels: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "November",
+          "Desember",
+        ],
         datasets: [
           {
             label: "PDF Download",
@@ -163,9 +157,6 @@ export default function CardLineChart() {
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              {/*<h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">*/}
-              {/*  Users Requests For Download*/}
-              {/*</h6>*/}
               <h2 className="text-white text-xl font-semibold">
                 Users Requests For Download
               </h2>

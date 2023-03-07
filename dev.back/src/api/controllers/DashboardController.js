@@ -1,4 +1,5 @@
 import multer from 'multer';
+import statisticModel from "../models/Statistics.js";
 
 class DashboardController {
     async testData (req, res) {
@@ -7,9 +8,22 @@ class DashboardController {
             { id: 1, title: 'Page 1' },
             { id: 2, title: 'Page 2' }
         ];
-        console.log('Test Data', testData);
         if (testData) res.status(200).json({ data: testData });
         if (error) res.status(error.code).json({ error: 'Show error message' });
+    }
+
+    async getStatsData(req, res) {
+        if (!req.user) {
+            return res.status(401).json('Access deny');
+        } else {
+            let result;
+            result = await statisticModel.fetchStatisticsData();
+            if (!result.error) {
+                return res.status(200).json({ success: true });
+            } else {
+                return res.status(500).json({ success: false, error: result.error.message });
+            }
+        }
     }
 
     async uploadFile (req, res) {

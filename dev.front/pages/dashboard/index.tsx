@@ -16,7 +16,6 @@ export default function Dashboard({ session }: { session: any }) {
     dispatch(fetchStatsAction());
   }, [statisticDataSelector, session?.user, dispatch]);
 
-
   return (
     <>
       <Head>
@@ -28,9 +27,6 @@ export default function Dashboard({ session }: { session: any }) {
         <div className="w-full mb-12 xl:mb-0 px-4">
           <CardLineChart />
         </div>
-        {/*<div className="w-full xl:w-4/12 px-4">*/}
-        {/*    <CardBarChart />*/}
-        {/*</div>*/}
       </div>
     </>
   );
