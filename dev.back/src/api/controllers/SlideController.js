@@ -1,7 +1,8 @@
 import multer from 'multer';
 import resourcesModel from '../models/Resources.js';
+import statisticsModel from '../models/Statistics.js';
 import * as url2pdf from 'url2pdf';
-import { getHtmlTableTemplate } from "../html/partials/HtmlContentTable.js";
+// import { getHtmlTableTemplate } from "../html/partials/HtmlContentTable.js";
 import { getHtmlTableDbTemplate } from "../html/partials/HtmlContentDbTable.js";
 import fs from "fs";
 import * as execProcess from "child-process-promise";
@@ -100,7 +101,7 @@ class SlideController {
         const rowId = req.body.rowId;
         const type = req.body.type;
         const resultInsert = await resourcesModel.saveData(parsedData, rowId);
-        let htmlContent = await getHtmlTableTemplate(parsedData);
+        // let htmlContent = await getHtmlTableTemplate(parsedData);
         let htmlNewContent = await getHtmlTableNewTemplate(parsedData);
 
         const htmlFileName = `${process.env.FS_HTML_FOLDER}/${Date.now().toString()}.html`;
@@ -109,8 +110,6 @@ class SlideController {
         await stream.once('open', function(fd) {
             stream.end(htmlNewContent);
         });
-
-
 
         const _opts = {
             paperSize: {
@@ -137,7 +136,6 @@ class SlideController {
                 autoCleanFileAgeInSec: 20
             }).then(async function(path) {
                 fileName = path.replace(process.env.FS_PDF_FOLDER + '/', '');
-                cnsole.log('fileName', fileName);
                 if (type === 'ppt') {
                     pptFileNameWitoutExt = fileName.replace('.pdf', '');
 //                         console.log(`curl --location --request POST 'https://api.cloudmersive.com/convert/pdf/to/pptx' \\
@@ -162,7 +160,10 @@ class SlideController {
                             console.error('ERROR: ', err);
                         });
                 } else {
-                    console.log("here we are");
+                    // add info to statistics table
+                    await statisticsModel.addStatisticsData('pdf');
+                    await resourcesModel.fetchItems(page, limit, offset, queryFilter, column, sort);
+
                     return res.status(200).json({
                         success: true,
                         objectId: resultInsert.id,
@@ -179,51 +180,6 @@ class SlideController {
                 fileName: null
             });
         }
-
-//         try {
-//             await url2pdf.renderFromHTML(htmlContent, _opts)
-//                 .then(async function(path){
-//                     fileName = path.replace(process.env.FS_PDF_FOLDER+'/', '');
-//                     if (type === 'ppt') {
-//                         pptFileNameWitoutExt = fileName.replace('.pdf', '');
-// //                         console.log(`curl --location --request POST 'https://api.cloudmersive.com/convert/pdf/to/pptx' \\
-// // --header 'Content-Type: multipart/form-data' \\
-// // --header 'Apikey: 22055829-22cf-40cb-8b48-313a687e8f51' \\
-// // --form 'inputFile=@"${process.env.FS_PDF_FOLDER}/${pptFileNameWitoutExt}.pdf"' --output "${process.env.FS_PPT_FOLDER}/${pptFileNameWitoutExt}.ppt"`);
-//                         execProcess.exec(
-// `curl --location --request POST 'https://api.cloudmersive.com/convert/pdf/to/pptx' \\
-// --header 'Content-Type: multipart/form-data' \\
-// --header 'Apikey: 22055829-22cf-40cb-8b48-313a687e8f51' \\
-// --form 'inputFile=@"${process.env.FS_PDF_FOLDER}/${pptFileNameWitoutExt}.pdf"' --output "${process.env.FS_PPT_FOLDER}/${pptFileNameWitoutExt}.ppt"`)
-//                             .then(function (result) {
-//                                 var stdout = result.stdout;
-//                                 var stderr = result.stderr;
-//                                 return res.status(200).json({
-//                                     success: true,
-//                                     objectId: resultInsert.id,
-//                                     fileName: process.env.API_URL+process.env.WS_PPT_FOLDER+'/'+pptFileNameWitoutExt+'.ppt'
-//                                 });
-//                             })
-//                             .catch(function (err) {
-//                                 console.error('ERROR: ', err);
-//                             });
-//                     } else {
-//                         return res.status(200).json({
-//                             success: true,
-//                             objectId: resultInsert.id,
-//                             fileName: process.env.API_URL+process.env.WS_PDF_FOLDER+'/'+fileName
-//                         });
-//                     }
-//                 });
-//         } catch (e) {
-//             console.log('Error generate PDF');
-//             console.log(e.message);
-//             return res.status(200).json({
-//                 success: false,
-//                 objectId: resultInsert.id,
-//                 fileName: null
-//             });
-//         }
     }
 }
 

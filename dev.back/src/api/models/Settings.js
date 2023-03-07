@@ -10,14 +10,12 @@ class Settings {
         const client = await pool.connect();
         try {
             const query = 'SELECT * FROM data.settings WHERE id=1';
-            console.log(query);
             const res = await client.query(query);
             if (res.rows[0]) {
                 return res.rows[0];
             }
 
         } catch (e) {
-            console.log('error message', e.message);
             if (process.env.NODE_ENV === 'development') {
                 logger.log(
                     'error',
@@ -41,12 +39,6 @@ class Settings {
                  WHERE id=1
                 `);
             return { success: true };
-            // const query = 'SELECT * FROM settings WHERE id=1';
-            // const res = await client.query(query);
-            // if (res.rows[0]) {
-            //     return res.rows[0];
-            // }
-
         } catch (e) {
             console.log('error message', e.message);
             if (process.env.NODE_ENV === 'development') {
