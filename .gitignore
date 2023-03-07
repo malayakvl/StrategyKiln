@@ -114,3 +114,4 @@ dev.front/.env
 /.idea/jsLibraryMappings.xml
 
 /.vscode/
+.DS_Store
