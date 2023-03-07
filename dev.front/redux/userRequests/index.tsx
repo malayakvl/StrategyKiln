@@ -21,6 +21,7 @@ const initialState: {
   filterData: any;
   checkedIds: any[];
   showModalPreviewPopup: boolean;
+  statisticData: any;
 } = {
   isFetched: false,
   loading: false,
@@ -35,6 +36,7 @@ const initialState: {
   },
   checkedIds: [],
   showModalPreviewPopup: false,
+  statisticData: null,
 };
 
 const ACTION_HANDLERS: any = {

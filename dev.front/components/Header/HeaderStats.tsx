@@ -1,16 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { statisticDataSelector } from "../../redux/userRequests/selectors";
 import CardStats from "../Cards/CardStats";
 import { useSelector } from "react-redux";
 
 export default function HeaderStats() {
   const statisticData = useSelector(statisticDataSelector);
-
-  useEffect(() => {
-    if (statisticData) {
-      console.log("stat data header", statisticData.data.result);
-    }
-  }, [statisticData]);
 
   return (
     <>
@@ -32,7 +26,7 @@ export default function HeaderStats() {
                   statPercent="3.48"
                   statPercentColor="text-emerald-500"
                   statDescripiron="Since last month"
-                  statIconName="far fa-heart"
+                  statIconName="far fa-calendar"
                   statIconColor="bg-red-500"
                 />
               </div>
@@ -54,14 +48,18 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-4/12 px-4">
                 <CardStats
-                  statSubtitle="LATEST LOGIN"
-                  statTitle="12.12.2022"
+                  statSubtitle="PER YEAR (pdf/ppt)"
+                  statTitle={
+                    statisticData?.data
+                      ? statisticData.data.result.perYearDownload
+                      : ""
+                  }
                   statArrow="down"
-                  statPercent="1.10"
-                  statPercentColor="text-orange-500"
-                  statDescripiron="Since yesterday"
-                  statIconName="fas fa-users"
-                  statIconColor="bg-pink-500"
+                  statPercent="3.48"
+                  statPercentColor="text-red-500"
+                  statDescripiron="Since last week"
+                  statIconName="far fa-calendar"
+                  statIconColor="bg-orange-500"
                 />
               </div>
             </div>

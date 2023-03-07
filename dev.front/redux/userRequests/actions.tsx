@@ -162,7 +162,6 @@ export const fetchStatsAction: any = createAction(
         })
         .then((res) => {
           dispatch(showLoaderAction(false));
-          console.log("fetched data", res.data);
           return {
             data: res.data,
           };

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { getSession } from "next-auth/react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchStatsAction } from "../../redux/userRequests";
 
 import BackendLayout from "../../components/Layout/BackendLayout";
@@ -11,17 +11,11 @@ import { useEffect } from "react";
 export default function Dashboard({ session }: { session: any }) {
   if (!session) return <></>;
   const dispatch = useDispatch();
-  const statisticData = useSelector(statisticDataSelector);
+  // const statisticData = useSelector(statisticDataSelector);
 
   useEffect(() => {
     dispatch(fetchStatsAction());
   }, [statisticDataSelector, session?.user, dispatch]);
-
-  useEffect(() => {
-    if (statisticData) {
-      console.log("stat data", statisticData.data.result);
-    }
-  }, [statisticData]);
 
   return (
     <>

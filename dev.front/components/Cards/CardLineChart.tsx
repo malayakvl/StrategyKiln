@@ -1,156 +1,69 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Chart from "chart.js";
+import { useSelector } from "react-redux";
+import { statisticDataSelector } from "../../redux/userRequests/selectors";
 
 export default function CardLineChart() {
-  React.useEffect(() => {
-    const DATA_COUNT = 12;
-    const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
-    const configBar = {
-      type: "bar",
-      data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "November",
-          "Desember",
-        ],
-        datasets: [
-          {
-            label: "PDF Download",
-            data: [65, 78, 66, 44, 56, 67, 75],
-            borderColor: "#ffb1c1",
-            backgroundColor: "#ffb1c1",
-          },
-          {
-            label: "Powerpoint Download",
-            data: [25, 48, 26, 14, 96, 27, 5],
-            borderColor: "#ffe2a0",
-            backgroundColor: "#ffe2a0",
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    };
-    const config = {
-      type: "line",
-      data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
-        datasets: [
-          {
-            label: new Date().getFullYear(),
-            backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
-            data: [65, 78, 66, 44, 56, 67, 75],
-            fill: false,
-          },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#ffb1c1",
-            borderColor: "#fff",
-            data: [40, 68, 86, 74, 56, 60, 87],
-          },
-        ],
-      },
-      options: {
-        maintainAspectRatio: false,
-        responsive: true,
-        title: {
-          display: false,
-          text: "Sales Charts",
-          fontColor: "white",
-        },
-        legend: {
-          labels: {
-            fontColor: "white",
-          },
-          align: "end",
-          position: "bottom",
-        },
-        tooltips: {
-          mode: "index",
-          intersect: false,
-        },
-        hover: {
-          mode: "nearest",
-          intersect: true,
-        },
-        scales: {
-          xAxes: [
-            {
-              ticks: {
-                fontColor: "rgba(255,255,255,.7)",
+  const statisticData = useSelector(statisticDataSelector);
+
+  useEffect(() => {
+    if (statisticData) {
+      console.log(
+        "stat data header",
+        statisticData.data.result.statsPerYearPdf
+      );
+      if (statisticData.data.result.statsPerYearPdf) {
+        const configBar = {
+          type: "bar",
+          data: {
+            labels: [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "November",
+              "Desember",
+            ],
+            datasets: [
+              {
+                label: "PDF Download",
+                data: [65, 78, 66, 44, 56, 67, 75],
+                borderColor: "#ffb1c1",
+                backgroundColor: "#ffb1c1",
               },
-              display: true,
-              scaleLabel: {
-                display: false,
-                labelString: "Month",
-                fontColor: "white",
+              {
+                label: "Powerpoint Download",
+                data: [25, 48, 26, 14, 96, 27, 5],
+                borderColor: "#ffe2a0",
+                backgroundColor: "#ffe2a0",
               },
-              gridLines: {
-                display: false,
-                borderDash: [2],
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.3)",
-                zeroLineColor: "rgba(0, 0, 0, 0)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
               },
             },
-          ],
-          yAxes: [
-            {
-              ticks: {
-                fontColor: "rgba(255,255,255,.7)",
-              },
-              display: true,
-              scaleLabel: {
-                display: false,
-                labelString: "Value",
-                fontColor: "white",
-              },
-              gridLines: {
-                borderDash: [3],
-                borderDashOffset: [3],
-                drawBorder: false,
-                color: "rgba(255, 255, 255, 0.15)",
-                zeroLineColor: "rgba(33, 37, 41, 0)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
-            },
-          ],
-        },
-      },
-    };
-    // @ts-ignore
-    // const ctx = document.getElementById("line-chart").getContext("2d");
-    const ctx = document.getElementById("line-chart");
-    // @ts-ignore
-    // window.myLine = new Chart(ctx, config);
-    window.myLine = new Chart(ctx, configBar);
-  }, []);
+          },
+        };
+        // @ts-ignore
+        const ctx = document.getElementById("line-chart");
+        // @ts-ignore
+        window.myLine = new Chart(ctx, configBar);
+      }
+    }
+  }, [statisticData]);
+
+  // React.useEffect(() => {
+  //   const DATA_COUNT = 12;
+  //   const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
+  // }, []);
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
