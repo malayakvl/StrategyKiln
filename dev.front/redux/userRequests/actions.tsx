@@ -160,10 +160,11 @@ export const fetchStatsAction: any = createAction(
             ...authHeader(state.user.user.email),
           },
         })
-        .then(() => {
+        .then((res) => {
           dispatch(showLoaderAction(false));
+          console.log("fetched data", res.data);
           return {
-            data: {},
+            data: res.data,
           };
         });
     }

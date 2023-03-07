@@ -11,10 +11,17 @@ import { useEffect } from "react";
 export default function Dashboard({ session }: { session: any }) {
   if (!session) return <></>;
   const dispatch = useDispatch();
+  const statisticData = useSelector(statisticDataSelector);
 
   useEffect(() => {
     dispatch(fetchStatsAction());
   }, [statisticDataSelector, session?.user, dispatch]);
+
+  useEffect(() => {
+    if (statisticData) {
+      console.log("stat data", statisticData.data.result);
+    }
+  }, [statisticData]);
 
   return (
     <>

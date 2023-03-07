@@ -7,7 +7,6 @@ class TestController {
             { id: 1, title: 'Page 1' },
             { id: 2, title: 'Page 2' }
         ];
-        console.log('Test Data', testData);
         if (testData) res.status(200).json({ data: testData });
         if (error) res.status(error.code).json({ error: 'Show error message' });
     }

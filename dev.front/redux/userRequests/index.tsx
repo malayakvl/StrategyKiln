@@ -101,7 +101,7 @@ const ACTION_HANDLERS: any = {
       action: Action<boolean>
     ): State.UserRequests => ({
       ...state,
-      showPopup: action.payload,
+      statisticData: action.payload,
     }),
   },
   [bulkDeleteAction]: (state: State.UserRequests): State.UserRequests => {

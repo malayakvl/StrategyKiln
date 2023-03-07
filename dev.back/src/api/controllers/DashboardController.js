@@ -19,7 +19,7 @@ class DashboardController {
             let result;
             result = await statisticModel.fetchStatisticsData();
             if (!result.error) {
-                return res.status(200).json({ success: true });
+                return res.status(200).json({ success: true, result });
             } else {
                 return res.status(500).json({ success: false, error: result.error.message });
             }

@@ -84,12 +84,6 @@ export default function Step1() {
     });
   }, [acceptedFiles]);
 
-  // const removeFile = (file: any) => () => {
-  //   const newFiles = [...myFiles];
-  //   newFiles.splice(newFiles.indexOf(file), 1);
-  //   setMyFiles(newFiles);
-  // };
-
   const SubmitSchema = Yup.object().shape({
     company_name: Yup.string().required("Required field"),
     company_headline: Yup.string().required("Required field"),

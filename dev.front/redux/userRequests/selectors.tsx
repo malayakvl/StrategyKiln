@@ -24,10 +24,6 @@ export const itemHTMLSelector = createSelector(
   rootSelector,
   (userRequests: State.UserRequests): any => userRequests.html
 );
-// export const htmlSelector = createSelector(
-//     rootSelector,
-//     (userRequests: State.UserRequests): any => userRequests.item
-// );
 export const filterDataSelector = createSelector(
   rootSelector,
   (userRequests: State.UserRequests): any => userRequests.filterData
@@ -37,7 +33,6 @@ export const showPreviewPopupSelector = createSelector(
   (userRequests: State.UserRequests): boolean =>
     userRequests.showModalPreviewPopup
 );
-
 export const statisticDataSelector = createSelector(
   rootSelector,
   (userRequests: State.UserRequests): any => userRequests.statisticData
