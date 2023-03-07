@@ -5,7 +5,7 @@ class StatisticsController {
     async addStatisticsData(type) {
         const client = await pool.connect();
         try {
-            const query = 'INSERT INTO data.statistics SET type="' +type+'"';
+            const query = `INSERT INTO data.statistics (file_type) VALUES ('${type}')`;
             const res = await client.query(query);
 
             return { success: true };

@@ -115,3 +115,7 @@ dev.front/.env
 
 /.vscode/
 .DS_Store
+/dev.back/public/uploads/htmlTemp/
+/dev.back/public/uploads/logos/
+/dev.back/public/uploads/pdfTemp/
+/dev.back/public/uploads/pptTemp/

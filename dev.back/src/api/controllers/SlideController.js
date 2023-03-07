@@ -147,9 +147,10 @@ class SlideController {
 --header 'Content-Type: multipart/form-data' \\
 --header 'Apikey: 22055829-22cf-40cb-8b48-313a687e8f51' \\
 --form 'inputFile=@"${process.env.FS_PDF_FOLDER}/${pptFileNameWitoutExt}.pdf"' --output "${process.env.FS_PPT_FOLDER}/${pptFileNameWitoutExt}.ppt"`)
-                        .then(function (result) {
+                        .then(async function (result) {
                             var stdout = result.stdout;
                             var stderr = result.stderr;
+                            await statisticsModel.addStatisticsData('ppt');
                             return res.status(200).json({
                                 success: true,
                                 objectId: resultInsert.id,
@@ -162,7 +163,7 @@ class SlideController {
                 } else {
                     // add info to statistics table
                     await statisticsModel.addStatisticsData('pdf');
-                    await resourcesModel.fetchItems(page, limit, offset, queryFilter, column, sort);
+                    // await resourcesModel.fetchItems(page, limit, offset, queryFilter, column, sort);
 
                     return res.status(200).json({
                         success: true,
