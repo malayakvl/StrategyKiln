@@ -60,7 +60,7 @@ class StatisticsController {
                             statistics.created_at < date_trunc('month', now()) + '1 year'::interval`;
             const resYearPpt = await client.query(queryPptYear);
 
-            const totalPerYearPdf = `SELECT to_char(created_at, 'MM') AS monthStr, count(id) as totalPdf
+            const totalPerYearPdf = `SELECT to_char(created_at, 'MM') AS monthStr, count(id) as totalDownload
                                     FROM data.statistics
                                     WHERE 
                                         created_at > date_trunc('month', CURRENT_DATE) - INTERVAL '1 year'
@@ -68,11 +68,20 @@ class StatisticsController {
                                     GROUP BY 1`;
             const totalYearPdf = await client.query(totalPerYearPdf);
 
+            const totalPerYearPpt = `SELECT to_char(created_at, 'MM') AS monthStr, count(id) as totalDownload
+                                    FROM data.statistics
+                                    WHERE 
+                                        created_at > date_trunc('month', CURRENT_DATE) - INTERVAL '1 year'
+                                        AND file_type='ppt'
+                                    GROUP BY 1`;
+            const totalYearPpt = await client.query(totalPerYearPpt);
+
             return {
                 perWeekDownload: `${resWeekPdf.rows[0].pdfcount}/${resWeekPpt.rows[0].pptcount}`,
                 perMonthDownload: `${resMonthPdf.rows[0].pdfcount}/${resMonthPpt.rows[0].pptcount}`,
                 perYearDownload: `${resYearPdf.rows[0].pdfcount}/${resYearPpt.rows[0].pptcount}`,
-                statsPerYearPdf: totalYearPdf.rows
+                statsPerYearPdf: totalYearPdf.rows,
+                statsPerYearPpt: totalYearPpt.rows
             };
         } catch (e) {
             console.log('error message', e.message);

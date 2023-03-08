@@ -8,10 +8,18 @@ export default function CardLineChart() {
 
   useEffect(() => {
     if (statisticData) {
-      console.log(
-        "stat data header",
-        statisticData.data.result.statsPerYearPdf
-      );
+      const statPdf = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      const statPpt = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      if (statisticData.data.result.statsPerYearPdf.length) {
+        statisticData.data.result.statsPerYearPdf.forEach((data: any) => {
+          statPdf[Number(data.monthstr) - 1] = Number(data.totaldownload);
+        });
+      }
+      if (statisticData.data.result.statsPerYearPpt.length) {
+        statisticData.data.result.statsPerYearPpt.forEach((data: any) => {
+          statPpt[Number(data.monthstr) - 1] = Number(data.totaldownload);
+        });
+      }
       if (statisticData.data.result.statsPerYearPdf) {
         const configBar = {
           type: "bar",
@@ -32,13 +40,13 @@ export default function CardLineChart() {
             datasets: [
               {
                 label: "PDF Download",
-                data: [65, 78, 66, 44, 56, 67, 75],
+                data: statPdf,
                 borderColor: "#ffb1c1",
                 backgroundColor: "#ffb1c1",
               },
               {
                 label: "Powerpoint Download",
-                data: [25, 48, 26, 14, 96, 27, 5],
+                data: statPpt,
                 borderColor: "#ffe2a0",
                 backgroundColor: "#ffe2a0",
               },
@@ -60,10 +68,6 @@ export default function CardLineChart() {
     }
   }, [statisticData]);
 
-  // React.useEffect(() => {
-  //   const DATA_COUNT = 12;
-  //   const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
-  // }, []);
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
