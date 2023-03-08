@@ -1,20 +1,10 @@
 import Head from "next/head";
 import { getSession } from "next-auth/react";
-import { useDispatch } from "react-redux";
-import { fetchStatsAction } from "../../redux/userRequests";
-
 import BackendLayout from "../../components/Layout/BackendLayout";
 import CardLineChart from "../../components/Cards/CardLineChart";
-import { statisticDataSelector } from "../../redux/userRequests/selectors";
-import { useEffect } from "react";
 
 export default function Dashboard({ session }: { session: any }) {
   if (!session) return <></>;
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchStatsAction());
-  }, [statisticDataSelector, session?.user, dispatch]);
 
   return (
     <>

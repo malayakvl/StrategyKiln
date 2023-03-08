@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { statisticDataSelector } from "../../redux/userRequests/selectors";
 import CardStats from "../Cards/CardStats";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchStatsAction } from "../../redux/userRequests";
 
-export default function HeaderStats() {
+export default function HeaderStats(session: any) {
+  const dispatch = useDispatch();
   const statisticData = useSelector(statisticDataSelector);
+
+  useEffect(() => {
+    dispatch(fetchStatsAction());
+  }, [statisticDataSelector, session?.user, dispatch]);
 
   return (
     <>
