@@ -18,12 +18,6 @@ const Header: React.FC = () => {
   const [openedSubmenu, setOpenedSubmenu] = useState("");
   const { width } = useWindowDimensions();
 
-  // const toggleSubmenu = (menuName: string) => {
-  //   const tmpSubmenu: any = subMenuOpen;
-  //   tmpSubmenu[menuName] = !tmpSubmenu[menuName];
-  //   setSubMenuOpen(tmpSubmenu);
-  // };
-
   return (
     <header className="d-flex flex-wrap justify-content-center align-content-center">
       <div className="container">
