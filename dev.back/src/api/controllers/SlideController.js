@@ -27,7 +27,7 @@ class SlideController {
     }
 
     async fetchItem(req, res) {
-        const { queryFilter } = req.body;
+        // const { queryFilter } = req.body;
         if (!req.user) {
             return res.status(401).json('Access deny');
         } else {
@@ -53,6 +53,15 @@ class SlideController {
         }
         const ids = [];
         JSON.parse(req.body.data).filter(id => id.checked).forEach(data => ids.push(data.id));
+        await resourcesModel.bulkDelete(ids, req.user.id);
+
+        return res.status(200).json({ success: true });
+    }
+
+    async deleteRow (req, res) {
+        const ids = [];
+        ids.push(req.params.id);
+
         await resourcesModel.bulkDelete(ids, req.user.id);
 
         return res.status(200).json({ success: true });

@@ -12,7 +12,7 @@ const ModalConfirmation: React.FC = () => {
   const [meta, setMeta] = useState<Layouts.ModalConfirmationMeta | null>(null);
   const {
     title = "",
-    titleKey = "Do you want to delete",
+    titleKey = "Do you want to delete?",
     submitButtonProps,
     onConfirm,
     onCancel,

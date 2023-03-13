@@ -198,6 +198,15 @@ const ACTION_HANDLERS: any = {
       submenuDisplayStatus: [...state.submenuDisplayStatus, action.payload],
     }),
   },
+  [setModalConfirmationMetaAction]: (
+    state: State.Layouts,
+    action: Type.ReduxAction<Layouts.ModalConfirmationMeta>
+  ): State.Layouts => ({
+    ...state,
+    modalConfirmationMeta: action.payload && {
+      ...action.payload,
+    },
+  }),
 };
 
 export {

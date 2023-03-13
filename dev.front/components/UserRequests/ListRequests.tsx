@@ -57,10 +57,10 @@ const ListRequests: React.FC = () => {
             dispatch(deleteRowAction(id)).then(sendRequest),
         })
       );
-      toggleModalConfirmation();
     },
     [dispatch, sendRequest]
   );
+
   const handleEditBtnClick = useCallback(
     (event: React.SyntheticEvent): void => {
       const id = Number(event.currentTarget.getAttribute("data-id"));

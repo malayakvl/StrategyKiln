@@ -8,7 +8,7 @@ import fs from "fs";
  */
 class Resources {
     async fileUpload (req, res) {
-        const dirUpload = `${process.env.DOWNLOAD_FOLDER}/logos`;
+        // const dirUpload = `${process.env.DOWNLOAD_FOLDER}/logos`;
         const storage = multer.diskStorage({
             destination: function (req, file, cb) {
                 cb(null, `public/uploads/logos`);
@@ -100,7 +100,7 @@ class Resources {
         const query = `UPDATE data.resources SET pdfFileName=$$${fileName}$$ WHERE id=${id}`;
 
         try {
-            const res = await client.query(query);
+            await client.query(query);
 
             return { success: true };
         } catch (e) {
@@ -215,11 +215,10 @@ class Resources {
         }
     }
 
-    async bulkDelete (ids, userId) {
+    async bulkDelete (ids) {
         const client = await pool.connect();
         try {
             const SQL = `SELECT * FROM data.resources WHERE id IN (${ids.join(',')})`;
-            console.log(SQL);
             const res = await client.query(SQL);
             if (res.rows.length > 0) {
                 res.rows.forEach(item => {
@@ -237,7 +236,7 @@ class Resources {
             if (process.env.NODE_ENV === 'development') {
                 logger.log(
                     'error',
-                    'Model error:',
+                    'Model error bulk delete:',
                     { message: e.message }
                 );
             }

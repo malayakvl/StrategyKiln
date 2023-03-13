@@ -14,12 +14,10 @@ import {
 } from "../../../redux/layouts/selectors";
 import { RawPagination, EmptyTable, DropdownAction } from "../../_common/index";
 import { TableHeaders, PaginationType } from "../../../constants";
-// import { userSelector } from "../../../redux/user/selectors";
 import {
   setSwitchHeaderAction,
   setSwitchToggleAction,
 } from "../../../redux/layouts/actions";
-// import "Table.scss";
 
 interface Props {
   paginationType: Type.PaginationType;
@@ -280,7 +278,7 @@ const DataTable: React.FC<Props> = ({
       );
     }
     if (children?.length) return children;
-    return <EmptyTable colSpan={length}>Table is empty</EmptyTable>;
+    return <EmptyTable colSpan={(length+1)}>Table is empty</EmptyTable>;
   };
 
   return (

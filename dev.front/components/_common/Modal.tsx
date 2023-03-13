@@ -39,7 +39,6 @@ const Modal: React.FC<Props> = ({
 }) => {
   // const t = useTranslations();
   const dispatch = useDispatch();
-
   return (
     <div
       className="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center modal-confirmation"
