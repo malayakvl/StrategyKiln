@@ -43,7 +43,6 @@ const Toast: React.FC<Layouts.Toast> = memo(({ id, type, message }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      console.log('delete toast action');
     setTimeout(() => dispatch(deleteToastAction(id)), 4000);
   }, [id, message, dispatch]);
 

@@ -278,7 +278,7 @@ const DataTable: React.FC<Props> = ({
       );
     }
     if (children?.length) return children;
-    return <EmptyTable colSpan={(length+1)}>Table is empty</EmptyTable>;
+    return <EmptyTable colSpan={length + 1}>Table is empty</EmptyTable>;
   };
 
   return (
