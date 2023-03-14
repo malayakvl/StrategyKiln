@@ -39,6 +39,7 @@ export const fetchItemsAction: any = createAction(
           }
         )
         .then((res: any) => {
+          console.log("here");
           dispatch(showLoaderAction(false));
           return {
             count: res.data.count,
@@ -137,9 +138,9 @@ export const deleteRowAction: any = createAction(
           },
         })
         .then(async () => {
-          dispatch(showLoaderAction(false));
+          await dispatch(showLoaderAction(false));
           await dispatch(fetchItemsAction());
-          dispatch(setSuccessToastAction("Product has been deleted"));
+          await dispatch(setSuccessToastAction("Item has been deleted"));
           toggleModalConfirmation();
         });
     }
