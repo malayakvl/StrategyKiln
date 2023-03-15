@@ -44,7 +44,7 @@ const ButtonDownload: React.FC = () => {
                   dispatch(submitFormAction("ppt"));
                 }}
               >
-                PPT
+                PPTX
               </span>
             </li>
           </ul>

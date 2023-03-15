@@ -64,7 +64,7 @@ body {
 //}
 
 .loader {
-  @apply w-full h-full bg-black fixed opacity-75;
+  @apply w-full h-full bg-black fixed opacity-75 top-0;
   z-index: 9999999;
   //margin-top: -90px;
 }

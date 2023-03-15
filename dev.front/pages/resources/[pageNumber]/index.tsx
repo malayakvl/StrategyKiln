@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import React from "react";
 import {
   Step1,
@@ -11,12 +12,14 @@ import {
 } from "../../../components/resourceForms";
 import { setupFileNameAction } from "../../../redux/layouts";
 import Breadcrumb from "../../../components/Breadcrumb";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fileNameSelector } from "../../../redux/layouts/selectors";
 
 export default function ResultPage() {
   const router = useRouter();
   const stepName = router.query.pageNumber;
   const dispatch = useDispatch();
+  const fileName = useSelector(fileNameSelector);
 
   const clearHandler = () => {
     // clear local storage
@@ -34,9 +37,7 @@ export default function ResultPage() {
     localStorage.removeItem("step2Data_weaknesses2Strengths");
     localStorage.removeItem("step2Data_weaknesses2StrengthsVisibility");
     window.location.href = "/resources/company";
-    // router.push("/resources/company");
   };
-
   return (
     <div className="container">
       {stepName === "result" ? (
@@ -44,13 +45,29 @@ export default function ResultPage() {
           <div className="result-bg-slide"></div>
           <div className="result-title">
             Your SWOT Analysis has been downloaded successfully!
+            <small className="block mt-2 text-sm">
+              If download do not starting automatically click to «Download File»
+              button
+            </small>
           </div>
           <div className="result-btn-block">
-            <button className="btn red-button" onClick={() => clearHandler()}>
+            <Link legacyBehavior href={`${fileName}`}>
+              <a
+                target="_blank"
+                className="btn orange-button btn-swot-download"
+                rel="noreferrer"
+              >
+                Download File
+              </a>
+            </Link>
+            <button
+              className="btn red-button btn-swot-another"
+              onClick={() => clearHandler()}
+            >
               Create another SWOT
             </button>
             <button
-              className="btn orange-button"
+              className="btn orange-button btn-swot-back-edit"
               onClick={() => {
                 router.push("/resources-preview");
                 dispatch(setupFileNameAction(null));
@@ -66,7 +83,7 @@ export default function ResultPage() {
           <div className="clearfix" />
           <div className="form-step-1">
             {stepName == "company" && <Step1 />}
-            {stepName == "strengths-step1" && <Step2 />}
+            {stepName == "strengths" && <Step2 />}
             {stepName == "weaknesses" && <Step3 />}
             {stepName == "opportunities" && <Step4 />}
             {stepName == "threats" && <Step5 />}

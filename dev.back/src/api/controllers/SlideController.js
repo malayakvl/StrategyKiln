@@ -155,15 +155,15 @@ class SlideController {
                         `curl --location --request POST 'https://api.cloudmersive.com/convert/pdf/to/pptx' \\
 --header 'Content-Type: multipart/form-data' \\
 --header 'Apikey: 22055829-22cf-40cb-8b48-313a687e8f51' \\
---form 'inputFile=@"${process.env.FS_PDF_FOLDER}/${pptFileNameWitoutExt}.pdf"' --output "${process.env.FS_PPT_FOLDER}/${pptFileNameWitoutExt}.ppt"`)
+--form 'inputFile=@"${process.env.FS_PDF_FOLDER}/${pptFileNameWitoutExt}.pdf"' --output "${process.env.FS_PPT_FOLDER}/${pptFileNameWitoutExt}.pptx"`)
                         .then(async function (result) {
                             var stdout = result.stdout;
                             var stderr = result.stderr;
-                            await statisticsModel.addStatisticsData('ppt');
+                            await statisticsModel.addStatisticsData('pptx');
                             return res.status(200).json({
                                 success: true,
                                 objectId: resultInsert.id,
-                                fileName: process.env.API_URL+process.env.WS_PPT_FOLDER+'/'+pptFileNameWitoutExt+'.ppt'
+                                fileName: process.env.API_URL+process.env.WS_PPT_FOLDER+'/'+pptFileNameWitoutExt+'.pptx'
                             });
                         })
                         .catch(function (err) {
