@@ -12,7 +12,7 @@ const ToastClassNamesMap = {
 
 const Toasts: React.FC = () => {
   const toasts = useSelector(toastsSelector);
-
+  console.log("Toasts", toasts);
   const transitions = useTransition(toasts, (item: any) => item.id, {
     from: { transform: "translate(360px, 0)", opacity: 1 },
     enter: { transform: "translate(0px, 0)" },
@@ -41,7 +41,7 @@ const Toasts: React.FC = () => {
 // eslint-disable-next-line react/display-name
 const Toast: React.FC<Layouts.Toast> = memo(({ id, type, message }) => {
   const dispatch = useDispatch();
-
+  console.log("here toasts", type);
   useEffect(() => {
     setTimeout(() => dispatch(deleteToastAction(id)), 4000);
   }, [id, message, dispatch]);

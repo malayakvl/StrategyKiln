@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
 interface Props {
@@ -18,19 +18,19 @@ const TogglePassword: React.FC<Props> = ({
   placeholder,
   props,
 }) => {
-  const t = useTranslations();
+  // const t = useTranslations();
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className={`mb-4 ${style} relative`}>
-      {label && <label htmlFor={name}>{t(label)}</label>}
+      {label && <label htmlFor={name}>{label}</label>}
       <div className="relative">
         {icon && <i className={`f-icon ${icon}`} />}
         {!showPassword ? (
           <>
             {icon && <i className={`f-icon ${icon}`} />}
             <input
-              placeholder={placeholder ? t(placeholder) : ""}
+              placeholder={placeholder ? placeholder : ""}
               className={icon ? "form-control-icon" : "form-control"}
               type="password"
               onChange={props.handleChange}

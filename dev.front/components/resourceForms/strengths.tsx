@@ -13,9 +13,11 @@ import {
   strengthsDataSelector,
   strengthsDisplayDataSelector,
 } from "../../redux/customerData/selectors";
+import { useTranslations }  from "next-intl";
 
 export default function Step2() {
   const router = useRouter();
+  const t = useTranslations();
   const dispatch = useDispatch();
   const stepData: any = useSelector(strengthsDataSelector);
   const strengthDisplaySelector = useSelector(strengthsDisplayDataSelector);
@@ -124,12 +126,9 @@ export default function Step2() {
   return (
     <div>
       <div className="row no-gutters">
-        <h3 className="resource-head">Strengths</h3>
+        <h3 className="resource-head">{t("Strengths")}</h3>
         <div className="clearfix"></div>
-        <span className="page-description">
-          Let’s starts with internal factors, like our company or brand’s
-          strengths and weaknesses. What are your company or brand’s strengths?
-        </span>
+        <span className="page-description">{t("strengths_descr_form")}</span>
       </div>
       <Formik
         initialValues={stepData}
@@ -162,7 +161,7 @@ export default function Step2() {
             {serviceList.length < 5 && (
               // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
               <h4 className="form-header" onClick={handleServiceAdd}>
-                <span>Add Strengths</span>
+                <span>{t("Add Strengths")}</span>
               </h4>
             )}
             <div className="clearfix"></div>
@@ -174,13 +173,13 @@ export default function Step2() {
                     className="gray-medium-button"
                     onClick={() => preSaveFormData(props.values)}
                   >
-                    Back
+                    {t("Back")}
                   </button>
                   <button
                     className="red-medium-button"
                     onClick={() => checkFormData(props.values, "next")}
                   >
-                    Next
+                    {t("Next")}
                   </button>
                 </div>
               )}
@@ -190,7 +189,7 @@ export default function Step2() {
                     className="red-medium-button float-right"
                     onClick={() => checkFormData(props.values, "modal")}
                   >
-                    Update
+                    {t("Update")}
                   </button>
                 </div>
               )}

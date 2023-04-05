@@ -51,7 +51,7 @@ export const registerEmail = async (email = '', locale = localeDefault) => {
   const { default: t } = await import(`../sender/${locale}.js`);
   // remove from letter cuz user already created
   // <p>
-  //   ${t['To access your account and complete your profile, click on the link below']}: <a href='${frontUrl}'>${t['Click for confirmation']}</a>
+  //   ${t['To access your account and complete your Profile, click on the link below']}: <a href='${frontUrl}'>${t['Click for confirmation']}</a>
   // </p>
 
   return {
@@ -84,7 +84,7 @@ export const trialSubscriptionEmail = async (email = '', locale = localeDefault)
       ${t['Thank you for joining Live Pro Shop']}. ${t['Your account has been created']}.
     </p>
     <p>
-      ${t['To access your account and complete your profile, click on the link below']}: <a href='${frontUrl}'>${t['Click for confirmation']}</a>
+      ${t['To access your account and complete your Profile, click on the link below']}: <a href='${frontUrl}'>${t['Click for confirmation']}</a>
     </p>
     <p>
       ${t['If you are having trouble logging into your account, contact us at']} info@liveproshop.com

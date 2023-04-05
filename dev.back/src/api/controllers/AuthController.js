@@ -1,5 +1,4 @@
 import passport from '../middleware/passport.js';
-import userModel from '../models/User.js';
 import { getTokensAndSetCookies } from '../lib/token.js';
 
 
@@ -14,7 +13,7 @@ class AuthController {
         passport.authenticate('local', { session: false },
             (err, authUser, info) => {
                 if (err) {
-                    return res.status(500).json({ code: 500, message: err.message });
+                    return res.status(500).json({ code: 500, message: 'Authentification failed', error: {message: "dsadasd"} });
                 }
                 if (!authUser) {
                     return res.status(400).json({ code: 400, message: info.message });

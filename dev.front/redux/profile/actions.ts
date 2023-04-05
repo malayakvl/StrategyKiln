@@ -1,7 +1,7 @@
 import { createAction } from "redux-actions";
 import axios from "axios";
 import { authHeader } from "../../lib/functions";
-import { setSuccessToastAction, setErrorToastAction } from "../layouts";
+import {setSuccessToastAction, setErrorToastAction, setInfoToastAction} from "../layouts";
 import { setUserAction } from "../user/";
 import { showLoaderAction } from "../../redux/layouts/actions";
 import { baseApiUrl } from "../../constants";
@@ -9,7 +9,7 @@ const baseUrl = `${baseApiUrl}/api`;
 const baseAuthUrl = `${baseApiUrl}/auth`;
 
 export const fetchProfileAction: any = createAction(
-  "profile/FETCH_PROFILE",
+  "Profile/FETCH_PROFILE",
   async () =>
     async (
       dispatch: Type.Dispatch,
@@ -27,7 +27,7 @@ export const fetchProfileAction: any = createAction(
     }
 );
 export const updateProfileAction: any = createAction(
-  "profile/UPDATE_PROFILE",
+  "Profile/UPDATE_PROFILE",
   async (data: any) =>
     (dispatch: Type.Dispatch, getState: () => State.Root): Promise<void> => {
       const state = getState();
@@ -47,24 +47,27 @@ export const updateProfileAction: any = createAction(
 );
 
 export const changePasswordAction: any = createAction(
-  "profile/CHANGE_PASSWORD",
+  "Profile/CHANGE_PASSWORD",
   async (data: any) =>
     (dispatch: Type.Dispatch, getState: () => State.Root): Promise<void> => {
       const state = getState();
       return axios
-        .post(`${baseUrl}/changePassword`, data, {
+        .post(`${baseUrl}/profile`, data, {
           headers: {
             ...authHeader(state.user.user.email),
           },
         })
         .then(async () => {
           dispatch(setSuccessToastAction(`Password has been updated`));
+        })
+        .catch((e) => {
+          dispatch(setExistEmailAction(`Email present, input another email`));
         });
     }
 );
 
 export const changePasswordInvitationAction: any = createAction(
-  "profile/CHANGE_PASSWORD_INVITATION",
+  "Profile/CHANGE_PASSWORD_INVITATION",
   (data: any) =>
     async (dispatch: Type.Dispatch): Promise<any> => {
       dispatch(showLoaderAction(true));
@@ -93,7 +96,7 @@ export const changePasswordInvitationAction: any = createAction(
 );
 
 export const restorePasswordAction: any = createAction(
-  "profile/RESTORE_PASSWORD",
+  "Profile/RESTORE_PASSWORD",
   (data: any, locale: string) =>
     async (dispatch: Type.Dispatch): Promise<any> => {
       dispatch(showLoaderAction(true));
@@ -140,5 +143,6 @@ export const saveAddressAction: any = createAction(
 export const setAddressAction: any = createAction("addresses/SET_ADDRESS");
 
 export const setValidEmailStatusAction: any = createAction(
-  "profile/SET_VALID_STATUS"
+  "Profile/SET_VALID_STATUS"
 );
+export const setExistEmailAction: any = createAction("Profile/SET_EXIST_EMAIL");

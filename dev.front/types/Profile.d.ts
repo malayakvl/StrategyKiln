@@ -4,6 +4,7 @@ declare namespace Profile {
     crudStatus: string | null;
     validEmail: string | null;
     isPasswordChanged: boolean;
+    existEmail: string | null;
   }
 
   interface Profile {

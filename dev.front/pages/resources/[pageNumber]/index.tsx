@@ -15,7 +15,7 @@ import Breadcrumb from "../../../components/Breadcrumb";
 import { useDispatch, useSelector } from "react-redux";
 import { fileNameSelector } from "../../../redux/layouts/selectors";
 
-export default function ResultPage() {
+export default function ResultPage({ locale }: { locale: any }) {
   const router = useRouter();
   const stepName = router.query.pageNumber;
   const dispatch = useDispatch();
@@ -82,7 +82,7 @@ export default function ResultPage() {
           <Breadcrumb />
           <div className="clearfix" />
           <div className="form-step-1">
-            {stepName == "company" && <Step1 />}
+            {stepName == "company" && <Step1 locale={locale} />}
             {stepName == "strengths" && <Step2 />}
             {stepName == "weaknesses" && <Step3 />}
             {stepName == "opportunities" && <Step4 />}
@@ -94,4 +94,16 @@ export default function ResultPage() {
       )}
     </div>
   );
+}
+export async function getServerSideProps() {
+  const locale = "en";
+
+  return {
+    props: {
+      locale,
+      messages: {
+        ...require(`../../../messages/${locale}.json`),
+      },
+    },
+  };
 }

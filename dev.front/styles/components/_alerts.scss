@@ -18,3 +18,6 @@
   text-yellow-700 border-yellow-500
   w-full
 }
+.error-block {
+  @apply p-3 bg-red-200 mb-4 text-sm text-red-800;
+}

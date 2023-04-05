@@ -13,9 +13,11 @@ import {
   opportunitiesDataSelector,
   modalOpportunitiesSelector,
 } from "../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 export default function Step4() {
   const router = useRouter();
+  const t = useTranslations();
   const dispatch = useDispatch();
   const stepData: any = useSelector(opportunitiesDataSelector);
   const opportunitiesDisplaySelector: any = useSelector(
@@ -132,7 +134,7 @@ export default function Step4() {
   return (
     <div>
       <div className="row no-gutters">
-        <h3 className="resource-head">Opportunities</h3>
+        <h3 className="resource-head">{t("Opportunities")}</h3>
         <div className="clearfix"></div>
         <span className="page-description">
           Let move on to external factors, like opportunities and opportunities.

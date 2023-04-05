@@ -7,6 +7,7 @@ import {
   restorePasswordAction,
   setValidEmailStatusAction,
   saveAddressAction,
+  setExistEmailAction,
 } from "./actions";
 
 const initialState: State.Profile = {
@@ -14,6 +15,7 @@ const initialState: State.Profile = {
   crudStatus: null,
   validEmail: null,
   isPasswordChanged: false,
+  existEmail: null,
 };
 
 const ACTION_HANDLERS: any = {
@@ -45,6 +47,12 @@ const ACTION_HANDLERS: any = {
     next: (state: State.Profile, action: Action<any>): State.Profile => ({
       ...state,
       crudStatus: action.payload,
+    }),
+  },
+  [setExistEmailAction]: {
+    next: (state: State.Profile, action: Action<any>): State.Profile => ({
+      ...state,
+      existEmail: action.payload,
     }),
   },
   [changePasswordInvitationAction]: {

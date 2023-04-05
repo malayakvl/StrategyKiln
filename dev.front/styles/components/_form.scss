@@ -112,6 +112,17 @@ textarea.form-control {
         padding-left: 30px;
     }
 }
+.form-control-icon {
+    //@apply bg-white w-full rounded-lg p-2.5 pl-9 text-sm
+    //font-medium  border
+    //
+    //&:active,
+    //&:focus,
+    //&:focus-visible {
+    //    @apply bg-white w-full rounded-lg p-2.5 pl-9 text-sm font-medium border;
+    //}
+}
+
 
 .red-picker {
     background-image: url(../../public/images/red-picker.svg);

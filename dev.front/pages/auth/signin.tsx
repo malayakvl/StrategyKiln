@@ -1,14 +1,17 @@
 import * as Yup from "yup";
 import { InputText, InputPassword } from "../../components/_form";
 import { signIn, getSession } from "next-auth/react";
+// import { signIn } from 'next-auth/client';
 import BackendLayout from "../../components/Layout/BackendLayout";
 import { Formik } from "formik";
 import Head from "next/head";
 import Image from "next/image";
+import Router, { useRouter } from "next/router";
 import "../../styles/global-backend.scss";
+import { useEffect } from "react";
 
 function Signin() {
-  // const { query } = useRouter();
+  const { query } = useRouter();
 
   const SubmitSchema = Yup.object().shape({
     email: Yup.string()
@@ -16,6 +19,24 @@ function Signin() {
       .required("Required field"),
     password: Yup.string().required("Required field"),
   });
+
+  // async function handleSubmit(e:any) {
+  //   e.preventDefault();
+  //   if (errorMsg) setErrorMsg('');
+  //
+  //   const body = {
+  //     username: e.currentTarget.username.value,
+  //     password: e.currentTarget.password.value,
+  //   }
+  // }
+
+  // if (query.error) {
+  //   console.log("should be redirect here");
+  // }
+
+  useEffect(() => {
+    console.log("error login", query);
+  }, [query]);
 
   return (
     <div className="relative w-full h-full py-40 min-h-screen">
@@ -42,6 +63,11 @@ function Signin() {
                     height="32"
                     alt=""
                   />
+                  {query.authError && (
+                    <div className="error-el" style={{ right: "40px" }}>
+                      <span className="text-sm">{query.authError}</span>
+                    </div>
+                  )}
                   <Formik
                     enableReinitialize
                     initialValues={{ email: "1@1.com", password: "123" }}

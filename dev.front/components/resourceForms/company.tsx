@@ -14,6 +14,7 @@ import {
 import { addUploadedFile } from "../../redux/customerData";
 import { uploadLogoAction } from "../../redux/customerData/actions";
 import { baseApiUrl } from "../../constants";
+import { useTranslations } from "next-intl";
 
 const thumbsContainer = {
   display: "flex",
@@ -38,6 +39,7 @@ const thumbInner = {
 
 export default function Step1() {
   const router = useRouter();
+  const t = useTranslations();
   const dispatch = useDispatch();
   const stepData: any = useSelector(companyDataSelector);
   const [myFiles, setMyFiles] = useState<any[]>([]);
@@ -106,7 +108,7 @@ export default function Step1() {
         validationSchema={SubmitSchema}
         onSubmit={(values: any) => {
           dispatch(setCompanyAction(values));
-          router.push("/resources/strengths-step1");
+          router.push("/resources/strengths");
         }}
       >
         {(props: any) => (
@@ -116,33 +118,33 @@ export default function Step1() {
                 <InputText
                   icon={null}
                   style={"mb-6 md:mb-3"}
-                  label={"What is the name of your company?"}
+                  label={t("What is the name of your company?")}
                   name={"company_name"}
-                  placeholder={"Company Name"}
+                  placeholder={t("Company Name")}
                   props={props}
                   tips={null}
                 />
                 <InputText
                   icon={null}
                   style={"mb-3"}
-                  label={"What is your headline for the SWOT Analysis?"}
+                  label={t("What is your headline for the SWOT Analysis?")}
                   name={"company_headline"}
-                  placeholder={"Your Headline"}
+                  placeholder={t("Your Headline")}
                   props={props}
-                  tips={"E.g. “Amazon entry into online grocery delivery”"}
+                  tips={t("strength_tip_1")}
                 />
               </div>
               <div className="col-lg-6  col-md-6 dropzone-block">
                 <div className="mb-3">
                   <label htmlFor="strengths" className="form-label">
-                    Upload your company logo, if you have it
+                    {t("Upload your company logo, if you have it")}
                   </label>
                   <div className="styles-dropzone">
                     <div
                       {...getRootProps({ className: "dropzone", maxfiles: 1 })}
                     >
                       <input {...getInputProps()} />
-                      <p>Select a file to upload</p>
+                      <p>{t("Select a file to upload")}</p>
                     </div>
                     <div className="thumb-block-images">
                       <aside style={thumbsContainer}>
@@ -173,14 +175,13 @@ export default function Step1() {
             <div className="row no-gutters mt-3">
               <div className="col-12 d-flex justify-content-between">
                 <button className="gray-medium-button" disabled>
-                  Back
+                  {t("Back")}
                 </button>
                 <button
                   className="red-medium-button"
                   type="submit"
                   onClick={() => checkFormData(props.values)}
-                >
-                  Next
+                >{t("Next")}
                 </button>
                 {/*<Link legacyBehavior href={'/resourceForms/strengths'}>*/}
                 {/*    <button className="red-medium-button">Next</button>*/}
@@ -192,4 +193,16 @@ export default function Step1() {
       </Formik>
     </>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  const { locale } = context;
+  return {
+    props: {
+      locale,
+      messages: {
+        ...require(`../../messages/${locale}.json`),
+      },
+    },
+  };
 }

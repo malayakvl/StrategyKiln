@@ -1,14 +1,11 @@
 // import crypto from 'crypto';
 import sha256 from 'crypto-js/sha256.js';
-import hmacSHA512 from 'crypto-js/hmac-sha512.js';
-import Base64 from 'crypto-js/enc-base64.js';
 import jwt from 'jsonwebtoken';
 import pool from './connect.js';
 import { logger } from '../../common/logger.js';
-import moment from "moment";
 import { confirmSubscriptionEmail, confirmSubscriptionPaymentEmail } from "../sender/templates.js";
 import { sendMail } from "../lib/sendMail.js";
-// import crypto from "crypto";
+import crypto from "crypto";
 
 /**
  * User model
@@ -23,9 +20,10 @@ class User {
      * @param hash - string
      * @returns {boolean}
      */
-    validatePassword(password, salt1, hash1) {
-        const hashCheck = sha256(password + salt1).toString();
-        return hash1 === hashCheck;
+    validatePassword(password, salt, hash) {
+        const hashCheck = crypto.pbkdf2Sync(password, salt, 10000, 256, 'sha256').toString('hex');
+        console.log(hash, hashCheck);
+        return hash === hashCheck;
     }
     /**
      * Find user by email
@@ -39,18 +37,40 @@ class User {
         try {
             const res1 = await client.query(`SELECT * FROM data.find_user_by_email('${email.toLowerCase()}', false, '3.5 hours');`);
             // console.log(`SELECT * FROM data.find_user_by_email('${email.toLowerCase()}', false, '3.5 hours');`);
-            if (res1.rows[0].email) {
-                return res1.rows[0]
-            }
-            if (res1.rows[0].fields_json) {
-                console.log(res1.rows[0].fields_json);
-                return res1.rows[0].fields_json;
-            } else {
-                return null;
-            }
-            // return res.rows.length > 0 ? res.rows[0] : null;
+            // console.log('result', res1.rows[0].fields_json);
+            // if (!res1.rows[0]) {
+            //     return null;
+            // }
+
+            // if (res1.rows[0].fields_json) {
+            //     return res1.rows[0].fields_json;
+            // } else {
+            //     return null;
+            // }
+            return res1.rows.length > 0 ? res1.rows[0] : null;
         } catch (e) {
             console.log('error message', e.message);
+            if (process.env.NODE_ENV === 'development') {
+                logger.log(
+                    'error',
+                    'Model error:',
+                    { message: e.message }
+                );
+            }
+            throw new Error(e);
+        } finally {
+            client.release();
+        }
+    }
+
+
+    async findExistingEmail(email, userId) {
+        const client = await pool.connect();
+        try {
+            console.log(`SELECT * FROM data.users WHERE email = '${email}' AND id != '${userId}'`);
+            const res = await client.query(`SELECT * FROM data.users WHERE email = '${email}' AND id != '${userId}'`);
+            return res.rows.length;
+        } catch (e) {
             if (process.env.NODE_ENV === 'development') {
                 logger.log(
                     'error',
@@ -179,7 +199,7 @@ class User {
         }
     }
 
-    async createExistUserSubscription(userData, user) {
+    async createExistUserSubscription(userData) {
         const client = await pool.connect();
         try {
             const resPlan = await client.query(`SELECT * FROM data.subscription_plans WHERE id = '${userData.planId}'`);
@@ -663,8 +683,10 @@ class User {
             } = this.setPassword(data.password);
             const passwordData = {
                 salt: salt,
-                password: hash
+                password: hash,
+                email: data.email
             };
+
             const query = `SELECT common__tools._update_table_by_id('data', 'users', '${JSON.stringify(passwordData)}', ${user.id});`;
             await client.query(query);
             return { success: true };
@@ -757,7 +779,7 @@ class User {
     }
 
     /**
-     * sync our user data with fb profile data
+     * sync our user data with fb Profile data
      * @param userData - user object
      * @param data -fb data object
      * @returns {Promise<{user: (*|null)}|{error: {code: number, message: string}, user: null}>}
@@ -1047,8 +1069,14 @@ class User {
      * @returns {{salt: string, hash: string}}
      */
     setPassword(password) {
-        console.log('set password');
+        console.log('getting salt');
+        try {
+            const salt = crypto.randomBytes(16).toString('hex');
+        } catch (e) {
+            console.log(e)
+        }
         const salt = crypto.randomBytes(16).toString('hex');
+        console.log(salt);
         const hash = crypto.pbkdf2Sync(password, salt, 10000, 256, 'sha256').toString('hex');
         return {
             salt,

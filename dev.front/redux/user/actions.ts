@@ -8,7 +8,7 @@ const baseUrl = `${publicRuntimeConfig.apiUrl}/api`;
 // const authUrl = `${publicRuntimeConfig.apiUrl}/auth`;
 
 export const fetchUserAction: any = createAction(
-  "profile/FETCH_USER",
+  "Profile/FETCH_USER",
   async (email: string) => {
     return axios
       .get(`${baseUrl}/profile`, {

@@ -44,13 +44,6 @@ export default function MainLayout({ children }: { children: any }) {
     dispatch(showLoaderAction);
   }, [reloadState, dispatch]);
 
-  // useEffect(() => {
-  //     if (reloadState) {
-  //         setupStorageData(dispatch);
-  //     }
-  //     dispatch(changeReloadAction(false));
-  // }, [reloadState, dispatch]);
-
   return (
     <>
       {showLoader && (

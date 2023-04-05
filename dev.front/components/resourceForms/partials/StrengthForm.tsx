@@ -3,6 +3,7 @@ import { InputTextarea } from "../../_form";
 import { useDispatch, useSelector } from "react-redux";
 import { setStrengthsDisplayAction } from "../../../redux/customerData";
 import { strengthsDisplayDataSelector } from "../../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 interface Props {
   props: any;
@@ -23,6 +24,7 @@ const StrengthForm: React.FC<Props> = ({
   const [dataError, setDataError] = useState<boolean>(customError);
   const dispatch = useDispatch();
   const strengthDataSelector = useSelector(strengthsDisplayDataSelector);
+  const t = useTranslations();
   // const reloadState = useSelector(reloadSelector);
 
   const handleDataAdd = (data: any, index: number) => {
@@ -85,21 +87,21 @@ const StrengthForm: React.FC<Props> = ({
               handleDataAdd(props.values[`strengths_${num}_description`], num);
             }}
           >
-            Add
+            {t("Add")}
           </a>
           <InputTextarea
             icon={null}
             style={""}
             label={""}
             name={`strengths_${num}_description`}
-            placeholder={"You can have up to 5 strengths, 150 characters each"}
+            placeholder={t(
+              "You can have up to 5 strengths, 150 characters each"
+            )}
             props={props}
-            tips={
-              "E.g. “customer recognize our brand” or “higher quality vs. the competition”"
-            }
+            tips={t("strength_tip_2")}
             maxLength={150}
           />
-          {dataError && <div className="error-el">Required field</div>}
+          {dataError && <div className="error-el">{t("Required field")}</div>}
         </div>
       ) : null}
     </div>

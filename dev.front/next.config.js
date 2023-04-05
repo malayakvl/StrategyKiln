@@ -6,6 +6,11 @@ const nextConfig = {
   publicRuntimeConfig: {
     apiUrl: process.env.API_URL,
   },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+    localeDetection: false,
+  },
   async redirects() {
     return [
       {

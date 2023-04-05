@@ -1,7 +1,7 @@
 import * as express from 'express';
 import TestController from '../controllers/TestController.js';
 import DashboardController from '../controllers/DashboardController.js';
-// import UserController from '../controllers/UserController.js';
+import UserController from '../controllers/UserController.js';
 import SettingsController from '../controllers/SettingsController.js';
 import SlideController from '../controllers/SlideController.js';
 import userModel from '../models/User.js';
@@ -45,7 +45,11 @@ apiRoutes.get('/user-requests/statistic', DashboardController.getStatsData);
 apiRoutes.post('/user-requests/bulk-delete', SlideController.bulkDelete);
 apiRoutes.route('/user-requests/delete/:id').delete(SlideController.deleteRow);
 
-apiRoutes.get('/profile', TestController.testData);
+// apiRoutes.get('/profile', TestController.testData);
+apiRoutes.route('/profile')
+    .post(UserController.changePassword)
+    .get(UserController.getProfile);
+
 
 apiRoutes.get('/*', defaultHandler);
 

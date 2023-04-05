@@ -40,7 +40,7 @@ export default {
   "Confirmation registration": "Confirmation de votre inscription",
   "Thank you for joining Live Pro Shop": "Merci d’avoir rejoint Live Pro Shop",
   "Your account has been created": "Votre compte a bien été créé",
-  "To access your account and complete your profile, click on the link below": "Pour accéder à votre compte et compléter votre profile, cliquez sur le lien ci-dessous",
+  "To access your account and complete your profile, click on the link below": "Pour accéder à votre compte et compléter votre Profile, cliquez sur le lien ci-dessous",
   "If you are having trouble logging into your account, contact us at": "Si vous rencontrez des difficultés pour vous connecter à votre compte, contactez-nous à",
 
   //welcome//

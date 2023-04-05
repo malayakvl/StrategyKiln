@@ -20,3 +20,7 @@ export const isPasswordChangedSelector = createSelector(
   rootSelector,
   (profile: State.Profile): any => profile.isPasswordChanged
 );
+export const existEmailSelector = createSelector(
+  rootSelector,
+  (profile: State.Profile): any => profile.existEmail
+);

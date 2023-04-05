@@ -2,8 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { SketchPicker } from "react-color";
 import { useSelector } from "react-redux";
 import { strengthsDataSelector } from "../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 export default function Services() {
+  const t = useTranslations();
   const [showPicker, setShowPicker] = useState(false);
   const [selectedColor, setSelectedColor] = useState("#fff");
   const [open, setOpen] = useState(false);
@@ -58,7 +60,7 @@ export default function Services() {
       <div className="swot-block">
         <div className="swot-1-bordered">
           <div className="swot-1">
-            <h2 className="h-1">Strengths</h2>
+            <h2 className="h-1">{t("cap_1")}</h2>
             <div className="info">
               <>
                 {Object.keys(stepStrengthData)?.map((item: any) => (
@@ -189,6 +191,9 @@ export async function getServerSideProps() {
   return {
     props: {
       locale,
+      messages: {
+        ...require(`../../messages/${locale}.json`),
+      },
     },
   };
 }

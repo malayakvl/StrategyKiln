@@ -38,7 +38,6 @@ const DropdownAction: React.FC<Props> = ({ options, onChange }) => {
       <button
         className="dropdown-toggler"
         onClick={() => {
-          console.log("cdssds");
           setOpen(!open);
         }}
       />

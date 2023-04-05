@@ -5,13 +5,11 @@ const { publicRuntimeConfig } = getConfig();
 const baseUrl = `${publicRuntimeConfig.apiUrl}/auth`;
 
 export default NextAuth({
-  // pages: {
-  //     signIn: '/auth/signin',
-  //     signOut: '/auth/signout',
-  //     error: '/auth/error', // Error code passed in query string as ?error=
-  //     verifyRequest: '/auth/verify-request', // (used for check email message)
-  //     newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
-  // },
+  pages: {
+    signIn: "/auth/signin",
+    signOut: "/auth/signout",
+    error: "/auth/signin?authError=Auth Failed", // Error code passed in query string as ?error=
+  },
   providers: [
     CredentialsProvider({
       id: "credentials_login",
@@ -25,26 +23,8 @@ export default NextAuth({
         if (res.ok && resp.user) {
           return resp.user;
         }
-        // console.log(resp.user);
-
-        throw `/auth/signin?message=${resp.message}`;
-        // return null
-      },
-    }),
-    CredentialsProvider({
-      id: "credentials_seller_login",
-      async authorize(credentials) {
-        const res = await fetch(`${baseUrl}/admin-seller`, {
-          method: "POST",
-          body: JSON.stringify(credentials),
-          headers: { "Content-Type": "application/json" },
-        });
-        const resp = await res.json();
-        if (res.ok && resp.user) {
-          return resp.user;
-        }
-        throw `/auth/signin?message=${resp.message}`;
-        // return null
+        // return null;
+        throw `/auth/signin`;
       },
     }),
   ],
