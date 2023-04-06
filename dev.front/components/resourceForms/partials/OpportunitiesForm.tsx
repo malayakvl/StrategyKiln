@@ -3,6 +3,7 @@ import { InputTextarea } from "../../_form";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpportunitiesDisplayAction } from "../../../redux/customerData";
 import { opportunitiesDisplayDataSelector } from "../../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 interface Props {
   props: any;
@@ -22,6 +23,7 @@ const OpportunitiesForm: React.FC<Props> = ({
   const [showResults, setShowResults] = useState<boolean>(false);
   const [dataError, setDataError] = useState<boolean>(customError);
   const dispatch = useDispatch();
+  const t = useTranslations();
   const opportunitiesDataSelector = useSelector(
     opportunitiesDisplayDataSelector
   );
@@ -96,16 +98,14 @@ const OpportunitiesForm: React.FC<Props> = ({
             style={""}
             label={""}
             name={`opportunities_${num}_description`}
-            placeholder={
+            placeholder={t(
               "You can have up to 5 opportunities, 150 characters each"
-            }
+            )}
             props={props}
-            tips={
-              "E.g. “Online grocery is a $100Bn sector growing at 15% per year” or “customers are moving toward non-meat alternatives, which have higher margin vs. traditional beef and chicken.”"
-            }
+            tips={t("oppo_form_descr")}
             maxLength={150}
           />
-          {dataError && <div className="error-el">Required field</div>}
+          {dataError && <div className="error-el">{t("Required field")}</div>}
         </div>
       ) : null}
     </div>

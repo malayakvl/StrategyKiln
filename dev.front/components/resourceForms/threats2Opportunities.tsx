@@ -13,10 +13,12 @@ import {
   threats2OpportunitiesDataSelector,
   modalThreats2OpportunitiesSelector,
 } from "../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 export default function Step6() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const t = useTranslations();
   const stepData: any = useSelector(threats2OpportunitiesDataSelector);
   const threats2OpportunitiesDisplaySelector = useSelector(
     threats2OpportunitiesDisplayDataSelector
@@ -30,7 +32,9 @@ export default function Step6() {
   ]);
 
   const SubmitSchema = Yup.object().shape({
-    company_data_threats2Opportunities: Yup.string().required("Required field"),
+    company_data_threats2Opportunities: Yup.string().required(
+      t("Required field")
+    ),
   });
 
   const handleServiceRemove = (index: number, props: any) => {
@@ -138,12 +142,9 @@ export default function Step6() {
   return (
     <div>
       <div className="row no-gutters">
-        <h3 className="resource-head">Threats to Opportunities</h3>
+        <h3 className="resource-head">{t("Threats to Opportunities")}</h3>
         <div className="clearfix"></div>
-        <span className="page-description">
-          As you look at your threats, are there any you want to focus on and
-          turn into opportunities?
-        </span>
+        <span className="page-description">{t("thread_form_descr")}</span>
       </div>
       <Formik
         initialValues={stepData}
@@ -176,7 +177,7 @@ export default function Step6() {
             {serviceList.length < 3 && (
               // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
               <h4 className="form-header" onClick={handleServiceAdd}>
-                <span>Add Threats to Opportunities</span>
+                <span>{t("Add Threats to Opportunities")}</span>
               </h4>
             )}
             <div className="clearfix"></div>

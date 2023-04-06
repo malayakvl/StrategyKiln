@@ -14,10 +14,12 @@ import {
   threatsDataSelector,
   modalThreatsSelector,
 } from "../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 export default function Step4() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const t = useTranslations();
   const stepData: any = useSelector(threatsDataSelector);
   const threatsDisplaySelector = useSelector(threatsDisplayDataSelector);
   const threatsModalSelector = useSelector(modalThreatsSelector);
@@ -25,7 +27,7 @@ export default function Step4() {
   const [serviceList, setServiceList] = useState<any[]>([{ threats: "" }]);
 
   const SubmitSchema = Yup.object().shape({
-    company_data_threats: Yup.string().required("Required field"),
+    company_data_threats: Yup.string().required(t("Required field")),
   });
 
   const handleServiceRemove = (index: number, props: any) => {
@@ -126,13 +128,9 @@ export default function Step4() {
   return (
     <div>
       <div className="row no-gutters">
-        <h3 className="resource-head">Threats</h3>
+        <h3 className="resource-head">{t("Threats")}</h3>
         <div className="clearfix"></div>
-        <span className="page-description">
-          What are the greatest threats in your industry? Is the competition
-          beating you, and if so why? Is inflation forcing you to increase
-          prices for customers?
-        </span>
+        <span className="page-description">{t("threat_form_descr")}</span>
       </div>
       <Formik
         initialValues={stepData}

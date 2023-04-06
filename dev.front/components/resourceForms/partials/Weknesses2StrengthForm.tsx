@@ -3,6 +3,7 @@ import { InputTextarea } from "../../_form";
 import { useDispatch, useSelector } from "react-redux";
 import { setWeaknesses2StrengthDisplayAction } from "../../../redux/customerData";
 import { weaknesses2StrengthsDisplayDataSelector } from "../../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 interface Props {
   props: any;
@@ -22,6 +23,7 @@ const Weaknesses2StrengthForm: React.FC<Props> = ({
   const [showResults, setShowResults] = useState<boolean>(false);
   const [dataError, setDataError] = useState<boolean>(customError);
   const dispatch = useDispatch();
+  const t = useTranslations();
   const visibilityStatus = useSelector(weaknesses2StrengthsDisplayDataSelector);
 
   const handleDataAdd = (data: any, index: number) => {
@@ -94,16 +96,12 @@ const Weaknesses2StrengthForm: React.FC<Props> = ({
             style={""}
             label={""}
             name={`weaknesses2Strengths_${num}_description`}
-            placeholder={
-              "You can have up to 5 weaknesses2Strengths, 150 characters each"
-            }
+            placeholder={t("weakn_placeholder")}
             props={props}
-            tips={
-              "E.g. “customer recognize our brand” or “higher quality vs. the competition”"
-            }
+            tips={t("weakn_tips")}
             maxLength={150}
           />
-          {dataError && <div className="error-el">Required field</div>}
+          {dataError && <div className="error-el">{t("Required field")}</div>}
         </div>
       ) : null}
     </div>

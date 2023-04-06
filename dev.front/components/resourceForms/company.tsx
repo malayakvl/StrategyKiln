@@ -87,8 +87,8 @@ export default function Step1() {
   }, [acceptedFiles]);
 
   const SubmitSchema = Yup.object().shape({
-    company_name: Yup.string().required("Required field"),
-    company_headline: Yup.string().required("Required field"),
+    company_name: Yup.string().required(t("Required field")),
+    company_headline: Yup.string().required(t("Required field")),
   });
 
   const checkFormData = (values: any) => {
@@ -181,7 +181,8 @@ export default function Step1() {
                   className="red-medium-button"
                   type="submit"
                   onClick={() => checkFormData(props.values)}
-                >{t("Next")}
+                >
+                  {t("Next")}
                 </button>
                 {/*<Link legacyBehavior href={'/resourceForms/strengths'}>*/}
                 {/*    <button className="red-medium-button">Next</button>*/}

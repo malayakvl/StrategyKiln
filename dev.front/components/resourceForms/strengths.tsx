@@ -13,7 +13,7 @@ import {
   strengthsDataSelector,
   strengthsDisplayDataSelector,
 } from "../../redux/customerData/selectors";
-import { useTranslations }  from "next-intl";
+import { useTranslations } from "next-intl";
 
 export default function Step2() {
   const router = useRouter();

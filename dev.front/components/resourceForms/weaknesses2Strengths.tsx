@@ -14,10 +14,12 @@ import {
   weaknesses2StrengthsDataSelector,
   weaknesses2StrengthsDisplayDataSelector,
 } from "../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 export default function Step7() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const t = useTranslations();
   const stepData: any = useSelector(weaknesses2StrengthsDataSelector);
   const weaknesses2StrengthsDisplaySelector: any = useSelector(
     weaknesses2StrengthsDisplayDataSelector
@@ -135,12 +137,9 @@ export default function Step7() {
   return (
     <div>
       <div className="row no-gutters">
-        <h3 className="resource-head">Weaknesses to Strengths</h3>
+        <h3 className="resource-head">{t("Weaknesses to Strengths")}</h3>
         <div className="clearfix"></div>
-        <span className="page-description">
-          As you look at your weaknesses, are there any you want to focus on and
-          turn into strengths?
-        </span>
+        <span className="page-description">{t("weak_descr_form")}</span>
       </div>
       <Formik
         initialValues={stepData}
@@ -184,13 +183,13 @@ export default function Step7() {
                     className="gray-medium-button"
                     onClick={() => preSaveFormData(props.values)}
                   >
-                    Back
+                    {t("Back")}
                   </button>
                   <button
                     className="red-medium-button"
                     onClick={() => checkFormData(props.values, "next")}
                   >
-                    Next
+                    {t("Next")}
                   </button>
                 </div>
               )}
@@ -200,7 +199,7 @@ export default function Step7() {
                     className="red-medium-button float-right"
                     onClick={() => checkFormData(props.values, "modal")}
                   >
-                    Update
+                    {t("Update")}
                   </button>
                 </div>
               )}

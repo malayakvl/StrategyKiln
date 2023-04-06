@@ -13,10 +13,12 @@ import {
   weaknessesDataSelector,
   modalWeaknessesSelector,
 } from "../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 export default function Step3() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const t = useTranslations();
   const stepData: any = useSelector(weaknessesDataSelector);
   const weaknessesDisplaySelector: any = useSelector(
     weaknessesDisplayDataSelector
@@ -26,7 +28,7 @@ export default function Step3() {
   const [serviceList, setServiceList] = useState<any[]>([{ weaknesses: "" }]);
 
   const SubmitSchema = Yup.object().shape({
-    company_data_weaknesses: Yup.string().required("Required field"),
+    company_data_weaknesses: Yup.string().required(t("Required field")),
   });
 
   const handleServiceRemove = (index: number, props: any) => {
@@ -128,10 +130,10 @@ export default function Step3() {
   return (
     <div>
       <div className="row no-gutters">
-        <h3 className="resource-head">Weaknesses</h3>
+        <h3 className="resource-head">{t("Weaknesses")}</h3>
         <div className="clearfix"></div>
         <span className="page-description">
-          What are your company or brand’s weaknesses?
+          {t("What are your company or brand’s weaknesses?")}
         </span>
       </div>
       <Formik
@@ -165,7 +167,7 @@ export default function Step3() {
             {serviceList.length < 5 && (
               // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
               <h4 className="form-header" onClick={handleServiceAdd}>
-                <span>Add weaknesses</span>
+                <span>{t("Add weaknesses")}</span>
               </h4>
             )}
             <div className="clearfix"></div>
@@ -176,13 +178,13 @@ export default function Step3() {
                     className="gray-medium-button"
                     onClick={() => preSaveFormData(props.values)}
                   >
-                    Back
+                    {t("Back")}
                   </button>
                   <button
                     className="red-medium-button"
                     onClick={() => checkFormData(props.values, "next")}
                   >
-                    Next
+                    {t("Next")}
                   </button>
                 </div>
               )}
@@ -192,7 +194,7 @@ export default function Step3() {
                     className="red-medium-button float-right"
                     onClick={() => checkFormData(props.values, "modal")}
                   >
-                    Update
+                    {t("Update")}
                   </button>
                 </div>
               )}

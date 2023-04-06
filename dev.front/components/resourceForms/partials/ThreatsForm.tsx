@@ -3,6 +3,7 @@ import { InputTextarea } from "../../_form";
 import { useDispatch, useSelector } from "react-redux";
 import { setThreatsDisplayAction } from "../../../redux/customerData";
 import { threatsDisplayDataSelector } from "../../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 interface Props {
   props: any;
@@ -22,6 +23,7 @@ const ThreatsForm: React.FC<Props> = ({
   const [showResults, setShowResults] = useState<boolean>(false);
   const [dataError, setDataError] = useState<boolean>(customError);
   const dispatch = useDispatch();
+  const t = useTranslations();
   const threatsDataSelector = useSelector(threatsDisplayDataSelector);
 
   const handleDataAdd = (data: any, index: number) => {
@@ -84,14 +86,12 @@ const ThreatsForm: React.FC<Props> = ({
             style={""}
             label={""}
             name={`threats_${num}_description`}
-            placeholder={"You can have up to 5 threats, 150 characters each"}
+            placeholder={t("You can have up to 5 threats, 150 characters each")}
             props={props}
-            tips={
-              "E.g. Walmart has entered online grocery with “InHome” delivery, an attractive pricing plan, and is gaining share rapidly"
-            }
+            tips={t("threat_tips")}
             maxLength={150}
           />
-          {dataError && <div className="error-el">Required field</div>}
+          {dataError && <div className="error-el">{t("Required field")}</div>}
         </div>
       ) : null}
     </div>

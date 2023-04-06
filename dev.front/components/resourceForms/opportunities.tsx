@@ -30,7 +30,7 @@ export default function Step4() {
   ]);
 
   const SubmitSchema = Yup.object().shape({
-    company_data_opportunities: Yup.string().required("Required field"),
+    company_data_opportunities: Yup.string().required(t("Required field")),
   });
 
   const handleServiceRemove = (index: number, props: any) => {
@@ -136,13 +136,7 @@ export default function Step4() {
       <div className="row no-gutters">
         <h3 className="resource-head">{t("Opportunities")}</h3>
         <div className="clearfix"></div>
-        <span className="page-description">
-          Let move on to external factors, like opportunities and opportunities.
-          What are the greatest opportunities in your industry? Is your industry
-          growing? Are there new trends emerging that you can take part in? Are
-          new technologies becoming available to help you do business more
-          efficiently?
-        </span>
+        <span className="page-description">{t("oppo_descr")}</span>
       </div>
       <Formik
         initialValues={stepData}

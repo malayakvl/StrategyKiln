@@ -3,6 +3,7 @@ import { InputTextarea } from "../../_form";
 import { useDispatch, useSelector } from "react-redux";
 import { setThreats2OpportunitiesDisplayAction } from "../../../redux/customerData";
 import { threats2OpportunitiesDisplayDataSelector } from "../../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 interface Props {
   props: any;
@@ -22,6 +23,7 @@ const Threats2OpportunitiesForm: React.FC<Props> = ({
   const [showResults, setShowResults] = useState<boolean>(false);
   const [dataError, setDataError] = useState<boolean>(customError);
   const dispatch = useDispatch();
+  const t = useTranslations();
   const visibilityStatus = useSelector(
     threats2OpportunitiesDisplayDataSelector
   );
@@ -97,16 +99,14 @@ const Threats2OpportunitiesForm: React.FC<Props> = ({
             style={""}
             label={""}
             name={`threats2Opportunities_${num}_description`}
-            placeholder={
+            placeholder={t(
               "You can have up to 5 threats2Opportunities, 150 characters each"
-            }
+            )}
             props={props}
-            tips={
-              "E.g. “customer recognize our brand” or “higher quality vs. the competition”"
-            }
+            tips={t("tips_th2op_form")}
             maxLength={150}
           />
-          {dataError && <div className="error-el">Required field</div>}
+          {dataError && <div className="error-el">{t("Required field")}</div>}
         </div>
       ) : null}
     </div>

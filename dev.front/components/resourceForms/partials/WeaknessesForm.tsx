@@ -3,6 +3,7 @@ import { InputTextarea } from "../../_form";
 import { useDispatch, useSelector } from "react-redux";
 import { setWeaknessesDisplayAction } from "../../../redux/customerData";
 import { weaknessesDisplayDataSelector } from "../../../redux/customerData/selectors";
+import { useTranslations } from "next-intl";
 
 interface Props {
   props: any;
@@ -22,6 +23,7 @@ const WeaknessesForm: React.FC<Props> = ({
   const [showResults, setShowResults] = useState<boolean>(false);
   const [dataError, setDataError] = useState<boolean>(customError);
   const dispatch = useDispatch();
+  const t = useTranslations();
   const weaknessesDataSelector = useSelector(weaknessesDisplayDataSelector);
 
   const handleDataAdd = (data: any, index: number) => {
@@ -91,14 +93,14 @@ const WeaknessesForm: React.FC<Props> = ({
             style={""}
             label={""}
             name={`weaknesses_${num}_description`}
-            placeholder={"You can have up to 5 weaknesses, 150 characters each"}
+            placeholder={t(
+              "You can have up to 5 weaknesses, 150 characters each"
+            )}
             props={props}
-            tips={
-              "E.g. “our distribution network is not optimized for perishables like food"
-            }
+            tips={t("weaknesses_tip")}
             maxLength={150}
           />
-          {dataError && <div className="error-el">Required field</div>}
+          {dataError && <div className="error-el">{t("Required field")}</div>}
         </div>
       ) : null}
     </div>

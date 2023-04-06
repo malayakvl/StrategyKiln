@@ -14,9 +14,11 @@ import { setupFileNameAction } from "../../../redux/layouts";
 import Breadcrumb from "../../../components/Breadcrumb";
 import { useDispatch, useSelector } from "react-redux";
 import { fileNameSelector } from "../../../redux/layouts/selectors";
+import { useTranslations } from "next-intl";
 
-export default function ResultPage({ locale }: { locale: any }) {
+export default function ResultPage() {
   const router = useRouter();
+  const t = useTranslations();
   const stepName = router.query.pageNumber;
   const dispatch = useDispatch();
   const fileName = useSelector(fileNameSelector);
@@ -57,14 +59,14 @@ export default function ResultPage({ locale }: { locale: any }) {
                 className="btn orange-button btn-swot-download"
                 rel="noreferrer"
               >
-                Download File
+                {t("Download File")}
               </a>
             </Link>
             <button
               className="btn red-button btn-swot-another"
               onClick={() => clearHandler()}
             >
-              Create another SWOT
+              {t("Create another SWOT")}
             </button>
             <button
               className="btn orange-button btn-swot-back-edit"
@@ -73,7 +75,7 @@ export default function ResultPage({ locale }: { locale: any }) {
                 dispatch(setupFileNameAction(null));
               }}
             >
-              Go Back and Edit
+              {t("Go Back and Edit")}
             </button>
           </div>
         </div>
@@ -82,7 +84,7 @@ export default function ResultPage({ locale }: { locale: any }) {
           <Breadcrumb />
           <div className="clearfix" />
           <div className="form-step-1">
-            {stepName == "company" && <Step1 locale={locale} />}
+            {stepName == "company" && <Step1 />}
             {stepName == "strengths" && <Step2 />}
             {stepName == "weaknesses" && <Step3 />}
             {stepName == "opportunities" && <Step4 />}

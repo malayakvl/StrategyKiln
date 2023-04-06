@@ -37,13 +37,14 @@ import WeaknessesModal from "../../components/resourceForms/modals/weaknesses";
 import StrengthsModal from "../../components/resourceForms/modals/strengths";
 import ThreatsOpportunitiesModal from "../../components/resourceForms/modals/threats2opportunities";
 import { ModalColors } from "../../components/_common";
+import { useTranslations } from "next-intl";
 
 export default function ResourcesPreview() {
   const router = useRouter();
   const dispatch = useDispatch();
   const colorDataPalette = useSelector(colorDataSelector);
   const fileName = useSelector(fileNameSelector);
-
+  const t = useTranslations();
   const node = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
@@ -60,11 +61,7 @@ export default function ResourcesPreview() {
 
   return (
     <div className="container">
-      <div className="slogan">
-        Here’s your SWOT Analysis slide, you can go back and edit it or just
-        click on “Download” button and the Slide will be downloaded as pdf or
-        ppt file on your PC
-      </div>
+      <div className="slogan">{t("swot_preview_descr")}</div>
       <div className="swot-block">
         {/* =========================================Swot LOGO ===========================*/}
         <SwotIcon />
@@ -99,7 +96,7 @@ export default function ResourcesPreview() {
                     position: "relative",
                   }}
                 >
-                  Strengths
+                  {t("Strengths")}
                   {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                   <span
                     className="cursor-pointer edit-resources"
@@ -149,7 +146,7 @@ export default function ResourcesPreview() {
                     position: "relative",
                   }}
                 >
-                  Weaknesses
+                  {t("Weaknesses")}
                   {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                   <span
                     className="cursor-pointer edit-resources"
@@ -194,7 +191,7 @@ export default function ResourcesPreview() {
                     position: "relative",
                   }}
                 >
-                  Threats
+                  {t("Threats")}
                   {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                   <span
                     className="cursor-pointer edit-resources"
@@ -245,7 +242,7 @@ export default function ResourcesPreview() {
                     position: "relative",
                   }}
                 >
-                  Opportunities
+                  {t("Opportunities")}
                   {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                   <span
                     className="cursor-pointer edit-resources"
@@ -286,7 +283,7 @@ export default function ResourcesPreview() {
               className="btn orange-button"
               onClick={() => router.push("/resources/weaknesses2strengths")}
             >
-              Go Back and Edit
+              {t("Go Back and Edit")}
             </button>
           </div>
           <div className="col-12 col-md-4 order-2">
@@ -319,6 +316,9 @@ export async function getServerSideProps() {
   return {
     props: {
       locale,
+      messages: {
+        ...require(`../../messages/${locale}.json`),
+      },
     },
   };
 }
