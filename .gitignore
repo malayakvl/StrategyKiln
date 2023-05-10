@@ -119,3 +119,4 @@ dev.front/.env
 /dev.back/public/uploads/logos/
 /dev.back/public/uploads/pdfTemp/
 /dev.back/public/uploads/pptTemp/
+/DELETE/

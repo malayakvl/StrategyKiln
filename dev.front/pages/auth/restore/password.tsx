@@ -1,10 +1,11 @@
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Head from "next/head";
 import Image from "next/image";
 import Router from "next/router";
+import { useRouter } from "next/router";
 import BackendLayout from "../../../components/Layout/BackendLayout";
 import { TogglePassword } from "../../../components/_form";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,31 +19,35 @@ export default function Password({
   hash: string;
   locale: string;
 }) {
-  const t = useTranslations();
+  // const t = useTranslations();
   const dispatch = useDispatch();
+  const router = useRouter();
+  // const { query } = router.query;
+  const hashStr = hash ? hash : router.query.hash;
+  // console.log("query params", router.query.hash);
   const isPasswordChanged = useSelector(isPasswordChangedSelector);
 
   useEffect(() => {
     if (isPasswordChanged) {
-      Router.push(`/${locale === "fr" ? "" : `${locale}/`}auth/signin`);
+      Router.push(`/auth/signin`);
     }
   }, [isPasswordChanged, locale]);
 
   const SubmitSchema = Yup.object().shape({
     password: Yup.string()
       .strict(true)
-      .trim(t("Cannot include leading and trailing spaces"))
-      .required(t("Required field"))
-      .min(6, t("Password must be at least 6 characters")),
+      .trim("Cannot include leading and trailing spaces")
+      .required("Required field")
+      .min(6, "Password must be at least 6 characters"),
     password_confirmation: Yup.string()
-      .required(t("Required field"))
-      .oneOf([Yup.ref("password"), null], t("Passwords must match")),
+      .required("Required field")
+      .oneOf([Yup.ref("password"), null], "Passwords must match"),
   });
 
   return (
     <>
       <Head>
-        <title>Amadeo CRM - Restore Password</title>
+        <title>Strategy Kiln - Restore Password</title>
       </Head>
 
       <div className="flex justify-center">
@@ -61,21 +66,21 @@ export default function Password({
             />
           </div>
 
-          <div className="text-sm mb-10">{t("Please, type new password")}</div>
+          <div className="text-sm mb-10">Please, type new password</div>
 
           <Formik
             enableReinitialize
             initialValues={{}}
             validationSchema={SubmitSchema}
             onSubmit={(values) =>
-              dispatch(changePasswordInvitationAction({ ...values, hash }))
+              dispatch(changePasswordInvitationAction({ ...values, hashStr }))
             }
           >
             {(props) => (
               <form onSubmit={props.handleSubmit} className="mt-5 w-full">
                 <TogglePassword
                   label={null}
-                  icon={"f-key"}
+                  icon={null}
                   name={"password"}
                   placeholder={"New Password"}
                   style=""
@@ -84,14 +89,21 @@ export default function Password({
 
                 <TogglePassword
                   label={null}
-                  icon={"f-key"}
+                  icon={null}
                   name={"password_confirmation"}
                   placeholder={"Confirm Password"}
                   style=""
                   props={props}
                 />
                 <div className="mt-10 mb-7 block border border-gray-180 border-b-0" />
-                <button type="submit" className="gradient-btn">
+                <button
+                  type="submit"
+                  className="mt-4 bg-blueGray-800 text-white active:bg-blueGray-600
+                              text-sm font-bold uppercase px-6 py-3
+                              rounded shadow hover:shadow-lg
+                              outline-none focus:outline-none mr-1 mb-1
+                              w-full ease-linear transition-all duration-150"
+                >
                   Save
                 </button>
               </form>
@@ -106,8 +118,9 @@ export default function Password({
 Password.Layout = BackendLayout;
 
 export async function getServerSideProps(context: any) {
-  const { req, locale } = context;
-  const hash = req.__NEXT_INIT_QUERY.hash;
+  const { req, locale, params } = context;
+  console.log("hash:", req.params);
+  const hash = req.__NEXT_INIT_QUERY ? req.__NEXT_INIT_QUERY.hash : null;
 
   return {
     props: {

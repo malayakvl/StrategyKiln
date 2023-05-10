@@ -10,5 +10,10 @@ authRoute.use(express.json({
 }));
 
 authRoute.post('/login', authController.authLogin);
+authRoute.post('/restorePassword', authController.restorePassword);
+authRoute.post('/changePassword', authController.changePassword);
+authRoute.get('/invitation/:hash', authController.getInvitation);
+authRoute.get('/activate-hash/:hash', authController.activateHash);
+
 
 export default authRoute;

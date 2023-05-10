@@ -43,7 +43,7 @@ function Restore({ locale }: { locale: string }) {
   return (
     <>
       <Head>
-        <title>Amadeo CRM - Restore Password</title>
+        <title>Strategy Kiln - Restore Password</title>
       </Head>
 
       <div className="flex justify-center">
@@ -70,19 +70,20 @@ function Restore({ locale }: { locale: string }) {
             initialValues={{ email: "" }}
             validationSchema={SubmitSchema}
             onSubmit={(values) => {
+              console.log("Restore password");
               dispatch(restorePasswordAction(values, locale));
             }}
           >
             {(props) =>
               validEmail === "yes" ? (
                 <div className="mb-4 font-bold text-2xl line-height-105percent w-72 text-green-500">
-                  {t("We send you recovery link, please check your mailbox")}
+                  We send you recovery link, please check your mailbox
                 </div>
               ) : (
                 <form onSubmit={props.handleSubmit}>
                   <InputText
                     style={null}
-                    icon={"f-email"}
+                    icon={null}
                     label={null}
                     name={"email"}
                     placeholder={"Email"}
@@ -93,7 +94,11 @@ function Restore({ locale }: { locale: string }) {
                   <button
                     type="submit"
                     disabled={props.isSubmitting}
-                    className="mt-6 gradient-btn w-full"
+                    className="mt-4 bg-blueGray-800 text-white active:bg-blueGray-600
+                              text-sm font-bold uppercase px-6 py-3
+                              rounded shadow hover:shadow-lg
+                              outline-none focus:outline-none mr-1 mb-1
+                              w-full ease-linear transition-all duration-150"
                   >
                     Send me a Recovery Link
                   </button>

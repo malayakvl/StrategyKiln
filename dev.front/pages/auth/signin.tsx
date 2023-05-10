@@ -2,6 +2,7 @@ import * as Yup from "yup";
 import { InputText, InputPassword } from "../../components/_form";
 import { signIn, getSession } from "next-auth/react";
 // import { signIn } from 'next-auth/client';
+import Link from "next/link";
 import BackendLayout from "../../components/Layout/BackendLayout";
 import { Formik } from "formik";
 import Head from "next/head";
@@ -132,6 +133,13 @@ function Signin() {
                           >
                             Sign In
                           </button>
+                        </div>
+                        <div>
+                          <Link href={"/auth/restore"} legacyBehavior>
+                            <a className="ml-auto text-xs text-orange-450">
+                              Forgot password?
+                            </a>
+                          </Link>
                         </div>
                       </form>
                     )}

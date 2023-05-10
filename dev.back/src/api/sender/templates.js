@@ -7,20 +7,19 @@ export const restoreEmail = async (email = '', link = '', locale = localeDefault
   const { default: t } = await import(`../sender/${locale}.js`);
 
   return {
-    subject: t['Reset your password'],
+    subject: "Reset your password",
     body: emailHtml(t, `
-    <p>${t['Hello']}</p>
-    <p>${t['There was a request to change your password!']}</p>
+    <p>Hello</p>
+    <p>There was a request to change your password!</p>
     <p>
-      ${t['Please click this link to change your password']}: <a href='${link}'>${link}</a>
+      Please click this link to change your password: <a href='${link}'>${link}</a>
     </p>
     <p>
-      ${t['If you did not make this request, you can safely ignore this email']}
+      If you did not make this request, you can safely ignore this email
     </p>
     <p>
-      ${t['See you soon']},
+      See you soon,
       <br>
-      ${t['The Live Pro Shop Team']}
     </p>`)
   };
 };
@@ -63,7 +62,7 @@ export const registerEmail = async (email = '', locale = localeDefault) => {
     </p>
     
     <p>
-      ${t['If you are having trouble logging into your account, contact us at']} info@liveproshop.com
+      ${t['If you are having trouble logging into your account, contact us at']} info@strategykiln.com
     </p>
     <p>
       ${t['See you soon']},

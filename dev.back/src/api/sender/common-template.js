@@ -14,7 +14,7 @@ export const emailHtml = (translate = translateDefault, content = '') => `<!doct
   <head>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>${translate["Amadeo Proshop"]}</title>
+    <title>Strategy Kiln</title>
     <style>
       @media only screen and (max-width: 620px) {
         table[class=body] h1 {
@@ -109,7 +109,7 @@ export const emailHtml = (translate = translateDefault, content = '') => `<!doct
               <tr>
                 <td class="align-center" width="100%" style="font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: center;" valign="top" align="center">
                   <a href="${frontUrl}" style="color: #ec0867; text-decoration: underline;">
-                    <img src="https://test.dev-tech.com.ua/images/logo.png" height="40" alt="${translate["Proshop"]}" style="border: none; -ms-interpolation-mode: bicubic; max-width: 100%;">
+                    <img src="http://5.78.51.103:3000/images/logo.svg" height="40" alt="Strategy Kiln" style="border: none; -ms-interpolation-mode: bicubic; max-width: 100%;">
                   </a>
                 </td>
               </tr>

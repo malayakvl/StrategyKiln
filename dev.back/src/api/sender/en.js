@@ -1,9 +1,9 @@
 export default {
   // "Amadeo": "Amadeo",
-  "Proshop": "Proshop",
+  "Proshop": "Strategy Kiln",
   // "Regards, Proshop Team": "Regards, Proshop Team",
   "Powered by": "Powered by",
-  "Amadeo Proshop": "Live Pro Shop",
+  "Amadeo Proshop": "Strategy Kiln App",
 
   "Hi": "Hi",
   "Hello": "Hello",

@@ -1,5 +1,5 @@
 // import crypto from 'crypto';
-import sha256 from 'crypto-js/sha256.js';
+// import sha256 from 'crypto-js/sha256.js';
 import jwt from 'jsonwebtoken';
 import pool from './connect.js';
 import { logger } from '../../common/logger.js';
@@ -36,7 +36,6 @@ class User {
         const client = await pool.connect();
         try {
             const res1 = await client.query(`SELECT * FROM data.find_user_by_email('${email.toLowerCase()}', false, '3.5 hours');`);
-            // console.log(`SELECT * FROM data.find_user_by_email('${email.toLowerCase()}', false, '3.5 hours');`);
             // console.log('result', res1.rows[0].fields_json);
             // if (!res1.rows[0]) {
             //     return null;
