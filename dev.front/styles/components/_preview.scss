@@ -21,6 +21,10 @@
       margin-top: 70px;
       font-family: 'Raleway', serif;
 
+      p {
+        overflow-wrap: break-word;
+      }
+
 
       @include less($large) {
         margin-bottom: 0px;

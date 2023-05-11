@@ -31,7 +31,7 @@ export const strenthsContent = (data) => {
     Object.keys(data).forEach((key, index) => {
         if (data[key]) {
             strengthsContentData +=
-                `<p style="margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
+                `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
                     ${data[`strengths_${index}_description`]}
             </p>
             `;
@@ -54,7 +54,7 @@ export const weaknessesContent = (data) => {
     Object.keys(data).forEach((key, index) => {
         if (data[key]) {
             weaknessesContentData +=
-                `<p style="margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
+                `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
                     ${data[`weaknesses_${index}_description`]}
             </p>
             `;
@@ -79,7 +79,7 @@ export const threatsContent = (data) => {
     Object.keys(data).forEach((key, index) => {
         if (data[key]) {
             threatsContentData +=
-                `<p style="margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
+                `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
                     ${data[`threats_${index}_description`]}
             </p>
             `;
@@ -102,7 +102,7 @@ export const opportunitiesContent = (data) => {
     Object.keys(data).forEach((key, index) => {
         if (data[key]) {
             opportunitiesContentData +=
-                `<p style="margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;margin-right: 10px;">
+                `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;margin-right: 10px;">
                     ${data[`opportunities_${index}_description`]}
             </p>
             `;
@@ -135,7 +135,7 @@ export const threats2OpportunitiesContent = (data) => {
     Object.keys(data.threats2OpportunitiesData).forEach((key, index) => {
         if (data.threats2OpportunitiesData[key]) {
             contentData +=
-                `<p style="margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
+                `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
                    ${data.threats2OpportunitiesData[key]}
             </p>
             `;
