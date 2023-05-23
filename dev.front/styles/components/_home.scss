@@ -21,7 +21,7 @@
     }
     @include less($large) {
         margin-top: 100px;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         //margin: 140px 0 32px 0;
     }
 }
@@ -643,13 +643,13 @@
         @include less($large) {
             display: flex;
             flex-direction: column;
-            padding: 0 0 0 0px;
+            padding: 0 0 0 0;
             width: auto;
         }
 
         h2 {
             color: #ED5829;
-            padding: 0 0 10px 0px;
+            padding: 0 0 10px 0;
             margin: 0;
             position: relative;
 
@@ -743,7 +743,7 @@
         //}
         h2 {
             color: #FCAB32;
-            padding: 0 0 10px 0px;
+            padding: 0 0 10px 0;
             margin: 0;
             position: relative;
 
