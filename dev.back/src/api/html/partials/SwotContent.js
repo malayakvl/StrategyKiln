@@ -40,8 +40,8 @@ export const strenthsContent = (data) => {
     return `
         <div style="color: #3D3E52;
                 text-align: left;
-                margin-top:0;
-                width: 290px;
+                margin-top:-5px;
+                width: 295px;
                 "
         >
             ${strengthsContentData}
@@ -65,7 +65,7 @@ export const weaknessesContent = (data) => {
                 color: #3D3E52;
                 text-align: left;
                 margin-top:0;
-                width: 270px;
+                width: 300px;
                 "
         >
             ${weaknessesContentData}
@@ -88,8 +88,8 @@ export const threatsContent = (data) => {
     return `
         <div style="color: #3D3E52;
                  text-align: left;
-                 margin-top:0;
-                width: 270px;
+                 margin-top:-5px;
+                width: 285px;
                 "
         >
             ${threatsContentData}
@@ -112,7 +112,7 @@ export const opportunitiesContent = (data) => {
         <div style="color: #3D3E52;
                  text-align: left;
                  margin-top:0;
-                width: 270px
+                width: 285px
                 "
         >
             ${opportunitiesContentData}
@@ -191,11 +191,18 @@ export const weaknesses2StrengthsContent = (data) => {
                 color: #FFF;
                 padding: 10px 10px 10px 10px;
                 margin-top: 25px;
-                width: 250px;"
+                width: 275px;"
             >
         `;
+    const keysWeaknesses2Strengths = [
+        'weaknesses2Strengths_0_description',
+        'weaknesses2Strengths_1_description',
+        'weaknesses2Strengths_2_description',
+        'weaknesses2Strengths_3_description',
+        'weaknesses2Strengths_4_description',
+    ]
     Object.keys(data.weaknesses2StrengthsData).forEach((key, index) => {
-        if (data.weaknesses2StrengthsData[key]) {
+        if (data.weaknesses2StrengthsData[key] && keysWeaknesses2Strengths.includes(key)) {
             contentData +=
                 `<p style="margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
                    ${data.weaknesses2StrengthsData[key]}

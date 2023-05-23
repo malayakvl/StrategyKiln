@@ -593,8 +593,8 @@
         height: 41px;
         position: absolute;
         top: -35px;
-        left:calc(50% - 28px);
-        //left:50%;
+        //left:calc(50% - 28px);
+        left:calc(50% - 39px);
 
         @include less($large) {
             //left:calc(50% - 24px);
@@ -612,10 +612,8 @@
         height: 41px;
         position: absolute;
         bottom: -35px;
-        //left: 39%;
-        //left: 58%;
-        left:calc(50% - 28px);
-        //left:50%;
+        //left:calc(50% - 28px);
+        left:calc(50% - 19px);
 
         @include less($extra-large) {
             left: 50%;

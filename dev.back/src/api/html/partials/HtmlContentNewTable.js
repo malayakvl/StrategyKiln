@@ -69,9 +69,9 @@ export const getHtmlTableNewTemplate = (data) =>
                                     </td>
                                     <td style="position: relative">
                                         <!-- left border -->
-                                        <div style="width:1px;min-height:30vh;max-height:55vh;background: #ED5829;left: -1px;position: absolute; top:30px;"></div>
+                                        <div style="width:1px;min-height:55vh;max-height:85vh;background: #ED5829;left: -1px;position: absolute; top:30px;"></div>
                                         <!-- right border -->
-                                        <div style="width:1px;min-height:30vh;max-height:55vh;background: #FCAB32;right: -3px;position: absolute; top:30px;"></div>
+                                        <div style="width:1px;min-height:55vh;max-height:85vh;background: #FCAB32;right: -3px;position: absolute; top:30px;"></div>
                                     </td>
                                     <td style="position:relative;background:#fff;height: 30px;padding:0;margin:0;">
                                         <table cellspacing="0" cellpadding="0" style="border-color: #fff;padding:0; margin: 0;width: 100%;height:30px;border-bottom:0;">
@@ -122,7 +122,8 @@ export const getHtmlTableNewTemplate = (data) =>
                                             font-size: 14px;
                                             line-height: 0;
                                             padding-top: 0;
-                                            margin-top:0;
+                                            margin-top: 0;
+                                            /*margin-top:-20px;*/
                                             margin-left: 24px;
                                             color:${data.colorSettings.strengths_color};
                                             text-align: left;">
@@ -138,8 +139,9 @@ export const getHtmlTableNewTemplate = (data) =>
                                             font-size: 14px;
                                             line-height: 0;
                                             padding-top: 0;
-                                            margin-top:0;
-                                            margin-left: 47px;
+                                            margin-top: 0;
+                                            /*margin-top:-20px;*/
+                                            margin-left: 37px;
                                             color:${data.colorSettings.threats_color};
                                             text-align: left;">
                                             Threats
@@ -149,14 +151,14 @@ export const getHtmlTableNewTemplate = (data) =>
                                 <tr>
                                     <td style="position: relative;">
                                         <div style="width:1px;background: #ED5829;right: 0;position: absolute; top:-4px;"></div>
-                                        <div style="margin-left: 24px;font-family: 'Raleway',serif;">
+                                        <div style="margin-left: 24px;margin-top:0px;font-family: 'Raleway',serif;">
                                             ${strenthsContent(data.strengthsData)}
                                         </div>
                                     </td>
                                     <td></td>
                                     <td style="position: relative;">
                                         <div style="width:1px;background:#ED5829;left: 0;position: absolute; top:-4px;"></div>
-                                        <div style="margin-left: 47px;font-family: 'Raleway',serif;">
+                                        <div style="margin-left: 37px;margin-top:0px;font-family: 'Raleway',serif;">
                                             ${threatsContent(data.threatsData)}
                                         </div>
                                     </td>
@@ -166,13 +168,13 @@ export const getHtmlTableNewTemplate = (data) =>
                                 <tr>
                                     <td style="position: relative;vertical-align: top;">
                                         <div style="width:1px;background: #ED5829;right: 0;position: absolute; top:-4px;"></div>
-                                        <div style="margin-left: 22px;font-family: 'Raleway',serif;">
+                                        <div style="margin-left: 15px;font-family: 'Raleway',serif;">
                                             ${weaknesses2StrengthsContent(data)}
                                         </div>
                                     </td>
                                     <td></td>
                                     <td style="position: relative;vertical-align: top;padding-top:17px;">
-                                        <div style="margin-left: 47px;font-family: 'Raleway',serif;">
+                                        <div style="margin-left: 37px;font-family: 'Raleway',serif;">
                                             ${threats2OpportunitiesContent(data)}
                                         </div>
                                     </td>
@@ -207,7 +209,7 @@ export const getHtmlTableNewTemplate = (data) =>
                                             line-height: 0;
                                             padding-top: 0;
                                             margin-top:20px;
-                                            margin-left: 47px;
+                                            margin-left: 37px;
                                             color: ${data.colorSettings.opportunities_color};
                                             text-align: left;">
                                             Opportunities
@@ -223,7 +225,7 @@ export const getHtmlTableNewTemplate = (data) =>
                                     </td>
                                     <td style="position: relative;width:110px;"></td>
                                     <td style="position: relative;width:320px;">
-                                        <div style="margin-left: 52px;color:#000;font-family: 'Raleway',serif;">
+                                        <div style="margin-left: 37px;color:#000;font-family: 'Raleway',serif;">
                                            ${opportunitiesContent(data.opportunitiesData)}
                                         </div>
                                     </td>
@@ -282,10 +284,10 @@ export const getHtmlTableNewTemplate = (data) =>
                                     <td style="position: relative">
                                         <!-- left border -->
 <!--                                        <div style="width:1px;height:30vh;background: #FCAB32;left: -1px;position: absolute; bottom:30px;"></div>-->
-                                        <div style="width:1px;min-height:30vh;max-height:55vh;background: #FCAB32;left: -1px;position: absolute; bottom:30px;"></div>
+                                        <div style="width:1px;min-height:55vh;max-height:55vh;background: #FCAB32;left: -1px;position: absolute; bottom:30px;"></div>
                                         <!-- right border -->
 <!--                                        <div style="width:1px;height:30vh;background: #ED5829;right: -3px;position: absolute; bottom:30px;"></div>-->
-                                        <div style="width:1px;min-height:30vh;max-height:55vh;background: #ED5829;right: -3px;position: absolute; bottom:30px;"></div>
+                                        <div style="width:1px;min-height:55vh;max-height:55vh;background: #ED5829;right: -3px;position: absolute; bottom:30px;"></div>
                                     </td>
                                     <td style="position:relative;background:#fff;height: 30px;padding:0;margin:0;">
                                         <table cellspacing="0" cellpadding="0" style="border-color: #fff;padding:0; margin:0;width: 100%;height:30px;border-bottom:0;">
