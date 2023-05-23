@@ -8,7 +8,6 @@ const ButtonDownload: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   const setDropdownData = (opt: string) => {
-    console.log("file type", opt);
     setOpen(false);
   };
 

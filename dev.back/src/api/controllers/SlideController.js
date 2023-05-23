@@ -474,6 +474,21 @@ class SlideController {
                                                 sharp(logoSvgBuffer)
                                                     .toFile(`${dirUploadPpt}/SWOT.png`, (err, info) => {
                                                         let slide = pptx.addSlide();
+
+                                                        // LEFT BLOCK SLIDE
+                                                        slide.addImage({ x: 0.25, y: 0.20, w: 4.5, h: 1.65, path: `${dirUploadPpt}/border-left-top.png` });
+                                                        slide.addImage({ x: 0.105, y: 0.7, w: 0.3, h: 0.3, path: `${dirUploadPpt}/leftTop.png` });
+                                                        slide.addImage({ x: 0.105, y: 4.35, w: 0.3, h: 0.3, path: `${dirUploadPpt}/leftBottom.png` });
+                                                        slide.addImage({ x: 0.25, y: 3.6, w: 4.5, h: 1.65, path: `${dirUploadPpt}/border-right-bottom.png`, rotate: 180 });
+
+                                                        // paint bottom right border
+                                                        slide.addImage({ x: 5.2, y: 0.20, w: 4.5, h: 1.65, path: `${dirUploadPpt}/border-right-bottom-1.png`, rotate: 360 });
+                                                        slide.addImage({ x: 9.53, y: 0.7, w: 0.3, h: 0.3, path: `${dirUploadPpt}/rightTop.png` });
+                                                        slide.addImage({ x: 9.53, y: 4.35, w: 0.3, h: 0.3, path: `${dirUploadPpt}/rightBottom.png` });
+                                                        slide.addImage({ x: 3.975, y: 1.85, w: 2, h: 2, path: `${dirUploadPpt}/SWOT.png` });
+                                                        slide.addImage({ x: 5.2, y: 3.6, w: 4.5, h: 1.65, path: `${dirUploadPpt}/border-right-top-1.png`, rotate: 180 });
+
+
                                                         slide.addText(
                                                             [
                                                                 { text: "Strength", options: { fontSize: 16, color: colors.strengths_color, bold: true } },
@@ -506,22 +521,6 @@ class SlideController {
                                                         if (parsedData.strengthsData.strengths_4_description) {
                                                             strengthDataArr.push({ text: parsedData.strengthsData.strengths_4_description, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'}});
                                                         }
-                                                        // let strengthText1 = parsedData.strengthsData.strengths_0_description ? parsedData.strengthsData.strengths_0_description : '';
-                                                        // let strengthText2 = parsedData.strengthsData.strengths_1_description ? parsedData.strengthsData.strengths_1_description : '';
-                                                        // let strengthText3 = parsedData.strengthsData.strengths_2_description ? parsedData.strengthsData.strengths_2_description : '';
-                                                        // let strengthText4 = parsedData.strengthsData.strengths_3_description ? parsedData.strengthsData.strengths_3_description : '';
-                                                        // let strengthText5 = parsedData.strengthsData.strengths_4_description ? parsedData.strengthsData.strengths_4_description : '';
-                                                        // strength text
-                                                        // slide.addText(
-                                                        //     [
-                                                        //         { text: strengthText1, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: strengthText2, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: strengthText3, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: strengthText4, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: strengthText5, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //     ],
-                                                        //     { x: 0.35, y: 0.5, w: 3.8, h: 1.4, valign: 'middle' }
-                                                        // );
                                                         slide.addText(
                                                             strengthDataArr,
                                                             { x: 0.35, y: 0.5, w: 3.8, h: 1.4, valign: 'middle' }
@@ -574,26 +573,8 @@ class SlideController {
                                                             { x: 0.425, y: 2.2, w: 3.45, fill: { color: colors.weaknesses2strengths_color }, h: 1.2, shape: 'roundRect', rectRadius: 0.2, valign: 'middle'}
                                                         );
 
-                                                        // let weaknesses2strength1 = parsedData.weaknesses2StrengthsData.weaknesses2Strengths_0_description ? parsedData.weaknesses2StrengthsData.weaknesses2Strengths_0_description : '';
-                                                        // let weaknesses2strength2 = parsedData.weaknesses2StrengthsData.weaknesses2Strengths_1_description ? parsedData.weaknesses2StrengthsData.weaknesses2Strengths_1_description : '';
-                                                        // let weaknesses2strength3 = parsedData.weaknesses2StrengthsData.weaknesses2Strengths_2_description ? parsedData.weaknesses2StrengthsData.weaknesses2Strengths_2_description : '';
-                                                        // slide.addText(
-                                                        //     [
-                                                        //         { text: weaknesses2strength1, options: { paraSpaceAfter: 1.0, fontSize: 7.0, breakLine: true, lineSpacing: 7, fontFace: 'Helvetica Neue', valign: 'left' } },
-                                                        //         { text: weaknesses2strength2, options: { paraSpaceAfter: 1.0, fontSize: 7.0, breakLine: true, lineSpacing: 7, fontFace: 'Helvetica Neue', valign: 'left' } },
-                                                        //         { text: weaknesses2strength3, options: { paraSpaceAfter: 1.0, fontSize: 7.0, breakLine: true, lineSpacing: 7, fontFace: 'Helvetica Neue', valign: 'left' } },
-                                                        //     ],
-                                                        //     { x: 0.425, y: 2.2, w: 3.45, fill: { color: colors.weaknesses2strengths_color }, h: 1.2, shape: 'roundRect', rectRadius: 0.2, valign: 'middle'}
-                                                        // );
-                                                        // add arrow
                                                         slide.addImage({ x: 2.1, y: 1.9, w: 0.15, h: 0.3, path: `${dirUploadPpt}/leftArrow.png` });
                                                         slide.addImage({ x: 7.8, y: 3.35, w: 0.15, h: 0.3, path: `${dirUploadPpt}/rightArrow.png` });
-
-                                                        // LEFT BLOCK SLIDE
-                                                        slide.addImage({ x: 0.25, y: 0.20, w: 4.5, h: 1.65, path: `${dirUploadPpt}/border-left-top.png` });
-                                                        slide.addImage({ x: 0.105, y: 0.7, w: 0.3, h: 0.3, path: `${dirUploadPpt}/leftTop.png` });
-                                                        slide.addImage({ x: 0.105, y: 4.35, w: 0.3, h: 0.3, path: `${dirUploadPpt}/leftBottom.png` });
-                                                        slide.addImage({ x: 0.25, y: 3.6, w: 4.5, h: 1.65, path: `${dirUploadPpt}/border-right-bottom.png`, rotate: 180 });
 
                                                         // RIGHT BLOCK SLIDE
                                                         slide.addText(
@@ -631,22 +612,6 @@ class SlideController {
                                                             threatsArr,
                                                             { x: 5.95, y: 0.6, w: 3.7, h: 1.4, valign: 'middle' }
                                                         );
-                                                        // let threatsText1 = parsedData.threatsData.threats_0_description ? parsedData.threatsData.threats_0_description : '';
-                                                        // let threatsText2 = parsedData.threatsData.threats_1_description ? parsedData.threatsData.threats_1_description : '';
-                                                        // let threatsText3 = parsedData.threatsData.threats_2_description ? parsedData.threatsData.threats_2_description : '';
-                                                        // let threatsText4 = parsedData.threatsData.threats_3_description ? parsedData.threatsData.threats_3_description : '';
-                                                        // let threatsText5= parsedData.threatsData.threats_4_description ? parsedData.threatsData.threats_4_description : '';
-                                                        //
-                                                        // slide.addText(
-                                                        //     [
-                                                        //         { text: threatsText1, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: threatsText2, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: threatsText3, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: threatsText4, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: threatsText5, options: { paraSpaceAfter: 1.0, lineSpacing: 7.0, fontSize: 7.1, breakLine: true, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //     ],
-                                                        //     { x: 5.95, y: 0.6, w: 3.7, h: 1.4, valign: 'middle' }
-                                                        // );
 
                                                         // =============================================================
                                                         // ======================= oppo text ===========================
@@ -672,23 +637,6 @@ class SlideController {
                                                             { x: 5.95, y: 3.8, w: 3.7, valign: 'middle', align: 'left', h: 1.4 }
                                                         );
 
-                                                        // let oppoText1 = parsedData.opportunitiesData.opportunities_0_description ? parsedData.opportunitiesData.opportunities_0_description : '';
-                                                        // let oppoText2 = parsedData.opportunitiesData.opportunities_1_description ? parsedData.opportunitiesData.opportunities_1_description : '';
-                                                        // let oppoText3 = parsedData.opportunitiesData.opportunities_2_description ? parsedData.opportunitiesData.opportunities_2_description : '';
-                                                        // let oppoText4 = parsedData.opportunitiesData.opportunities_3_description ? parsedData.opportunitiesData.opportunities_3_description : '';
-                                                        // let oppoText5= parsedData.opportunitiesData.opportunities_4_description ? parsedData.opportunitiesData.opportunities_4_description : '';
-                                                        // slide.addText(
-                                                        //     [
-                                                        //         { text: oppoText1, options: { paraSpaceAfter: 1.0, fontSize: 7.0, breakLine: true, lineSpacing: 7.1, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: oppoText2, options: { paraSpaceAfter: 1.0, fontSize: 7.0, breakLine: true, lineSpacing: 7.1, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: oppoText3, options: { paraSpaceAfter: 1.0, fontSize: 7.0, breakLine: true, lineSpacing: 7.1, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: oppoText4, options: { paraSpaceAfter: 1.0, fontSize: 7.0, breakLine: true, lineSpacing: 7.1, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //         { text: oppoText5, options: { paraSpaceAfter: 1.0, fontSize: 7.0, breakLine: true, lineSpacing: 7.1, fontFace: 'Helvetica Neue', valign: 'left'} },
-                                                        //     ],
-                                                        //     { x: 5.95, y: 3.8, w: 3.7, valign: 'middle', align: 'left', h: 1.4 }
-                                                        // );
-
-
                                                         // =============================================================
                                                         // ======================= threats2oppo text ===================
                                                         // =============================================================
@@ -706,25 +654,6 @@ class SlideController {
                                                             threats2oppoArr,
                                                             { x: 6.05, y: 2.15, w: 3.55, fill: { color: colors.threats2opportunities_color }, h: 1.2, shape: 'roundRect', rectRadius: 0.2, valign: 'middle'}
                                                         );
-                                                        // let threats2oppo1 = parsedData.threats2OpportunitiesData.threats2Opportunities_0_description ? parsedData.threats2OpportunitiesData.threats2Opportunities_0_description : '';
-                                                        // let threats2oppo2 = parsedData.threats2OpportunitiesData.threats2Opportunities_1_description ? parsedData.threats2OpportunitiesData.threats2Opportunities_1_description : '';
-                                                        // let threats2oppo3 = parsedData.threats2OpportunitiesData.threats2Opportunities_2_description ? parsedData.threats2OpportunitiesData.threats2Opportunities_2_description : '';
-                                                        // slide.addText(
-                                                        //     [
-                                                        //         { text: threats2oppo1, options: { paraSpaceAfter: 0.9, fontSize: 7.0, breakLine: true, lineSpacing: 7, fontFace: 'Helvetica Neue', valign: 'left' } },
-                                                        //         { text: threats2oppo2, options: { paraSpaceAfter: 0.9, fontSize: 7.0, breakLine: true, lineSpacing: 7, fontFace: 'Helvetica Neue', valign: 'left' } },
-                                                        //         { text: threats2oppo3, options: { paraSpaceAfter: 0.9, fontSize: 7.0, breakLine: true, lineSpacing: 7, fontFace: 'Helvetica Neue', valign: 'left' } },
-                                                        //     ],
-                                                        //     { x: 6.05, y: 2.15, w: 3.55, fill: { color: colors.threats2opportunities_color }, h: 1.2, shape: 'roundRect', rectRadius: 0.2, valign: 'middle'}
-                                                        // );
-                                                        // paint bottom right border
-                                                        slide.addImage({ x: 5.2, y: 3.6, w: 4.5, h: 1.65, path: `${dirUploadPpt}/border-right-top-1.png`, rotate: 180 });
-
-                                                        // paint bottom right border
-                                                        slide.addImage({ x: 5.2, y: 0.20, w: 4.5, h: 1.65, path: `${dirUploadPpt}/border-right-bottom-1.png`, rotate: 360 });
-                                                        slide.addImage({ x: 9.53, y: 0.7, w: 0.3, h: 0.3, path: `${dirUploadPpt}/rightTop.png` });
-                                                        slide.addImage({ x: 9.53, y: 4.35, w: 0.3, h: 0.3, path: `${dirUploadPpt}/rightBottom.png` });
-                                                        slide.addImage({ x: 3.975, y: 1.85, w: 2, h: 2, path: `${dirUploadPpt}/SWOT.png` });
 
                                                         // add company name, headline and logo
                                                         let infoArr = [];
@@ -735,11 +664,9 @@ class SlideController {
                                                             infoArr,
                                                             { x: 0.05, y: 4.85, w: 3.85, h: 1.2, rectRadius: 0.2, valign: 'middle', paraSpaceAfter: 1.0, fontSize: 7.0,}
                                                         );
-                                                        slide.addImage({ x: 9.45, y: 5.3, w: 0.3, h: 0.3, path: `${dirUploadLogos}/${parsedData.companyData.company_logo}` });
-
-                                                        // ${process.env.API_URL}/uploads/logos/${data.company_logo}
-                                                        // slide.addImage({ x: 3.975, y: 1.85, w: 2, h: 2, path: `${dirUploadPpt}/SWOT.png` });
-
+                                                        if (parsedData.companyData.company_logo) {
+                                                            slide.addImage({ x: 9.45, y: 5.3, w: 0.3, h: 0.3, path: `${dirUploadLogos}/${parsedData.companyData.company_logo}` });
+                                                        }
 
                                                         // EXAMPLE 1: Saves output file to the local directory where this process is running
                                                         pptx.writeFile({ fileName: `${exportName}/swot` })

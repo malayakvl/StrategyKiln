@@ -88,7 +88,7 @@ export const submitFormAction: any = createAction(
       const rowId = state.layouts.dbRowId;
       return axios
         .post(
-          `${baseUrl}/saveSlideData?rowId=${rowId}&type=`,
+          `${baseUrl}/saveSlideData?rowId=${rowId}&type=${type}`,
           { data: JSON.stringify(state.stepData), rowId: rowId, type: type },
           {}
         )
