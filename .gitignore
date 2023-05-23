@@ -120,3 +120,4 @@ dev.front/.env
 /dev.back/public/uploads/pdfTemp/
 /dev.back/public/uploads/pptTemp/
 /DELETE/
+/dev.back/package-lock.json

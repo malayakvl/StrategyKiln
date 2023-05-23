@@ -170,6 +170,8 @@ class SlideController {
                 // generate ppt
                 const prefix = Date.now();
                 const dirUploadPpt = `${process.env.FS_PPT_FOLDER}/${prefix}`;
+                const dirUploadLogos = `${process.env.FS_LOGOS_FOLDER}`;
+
                 const colors = parsedData.colorSettings;
                 if (!fs.existsSync(dirUploadPpt)) {
                     fs.mkdirSync(dirUploadPpt, { recursive: true });
@@ -184,36 +186,36 @@ class SlideController {
                                 stroke="white"
                                 strokeWidth="4"
                         />
-                        <path d="M38 30H37.25H38ZM38 40H38.75H38ZM42 40H42.75H42ZM42 30H41.25H42ZM22 38H22.75H22ZM22
-                            40H21.25H22ZM26 40H25.25H26ZM26 38H26.75H26ZM30 34H29.25H30ZM30 40H30.75H30ZM34 40H34.75H34ZM34
-                            34H33.25H34ZM39 21.25C38.5858 21.25 38.25 21.5858 38.25 22C38.25 22.4142
-                            38.5858 22.75 39 22.75V21.25ZM41.25 25C41.25 25.4142 41.5858 25.75 42 25.75C42.4142 25.75
-                            42.75 25.4142 42.75 25H41.25ZM41.4702 23.5843C41.7929 23.3246 41.844 22.8525 41.5843
-                            22.5298C41.3246 22.2071 40.8525 22.156 40.5298 22.4157L41.4702 23.5843ZM21.9049
-                            31.256C21.4941 31.3085 21.2035 31.6842 21.256 32.0951C21.3086 32.5059 21.6842 32.7965
-                            22.0951 32.744L21.9049 31.256ZM41.25 30V40H42.75V30H41.25ZM38.75 40V30H37.25V40H38.75ZM38.75
-                            30C38.75 29.3096 39.3096 28.75 40 28.75V27.25C38.4812 27.25 37.25 28.4812 37.25 30H38.75ZM40
-                            41.25C39.3096 41.25 38.75 40.6904 38.75 40H37.25C37.25 41.5188 38.4812 42.75 40
-                            42.75V41.25ZM41.25 40C41.25 40.6904 40.6904 41.25 40 41.25V42.75C41.5188 42.75 42.75
-                            41.5188 42.75 40H41.25ZM42.75 30C42.75 28.4812 41.5188 27.25 40 27.25V28.75C40.6904
-                            28.75 41.25 29.3096 41.25 30H42.75ZM25.25 38L25.25 40H26.75L26.75 38H25.25ZM22.75 40L22.75
-                            38H21.25L21.25 40H22.75ZM22.75 38C22.75 37.3096 23.3096 36.75 24 36.75V35.25C22.4812
-                            35.25 21.25 36.4812 21.25 38H22.75ZM24 41.25C23.3096 41.25 22.75 40.6904 22.75
-                            40H21.25C21.25 41.5188 22.4812 42.75 24 42.75V41.25ZM25.25 40C25.25 40.6904 24.6904
-                            41.25 24 41.25V42.75C25.5188 42.75 26.75 41.5188 26.75 40H25.25ZM26.75 38C26.75 36.4812
-                            25.5188 35.25 24 35.25V36.75C24.6904 36.75 25.25 37.3096 25.25 38H26.75ZM33.25
-                            34V40H34.75V34H33.25ZM30.75 40V34H29.25V40H30.75ZM30.75 34C30.75 33.3096 31.3096 32.75 32
-                            32.75V31.25C30.4812 31.25 29.25 32.4812 29.25 34H30.75ZM32 41.25C31.3096 41.25 30.75 40.6904
-                            30.75 40H29.25C29.25 41.5188 30.4812 42.75 32 42.75V41.25ZM33.25 40C33.25 40.6904 32.6904
-                            41.25 32 41.25V42.75C33.5188 42.75 34.75 41.5188 34.75 40H33.25ZM34.75 34C34.75
-                            32.4812 33.5188 31.25 32 31.25V32.75C32.6904 32.75 33.25 33.3096 33.25 34H34.75ZM39
-                            22.75H41V21.25H39V22.75ZM41.25 23V25H42.75V23H41.25ZM41 22.75C41.1381 22.75 41.25
-                            22.8619 41.25 23H42.75C42.75 22.0335 41.9665 21.25 41 21.25V22.75ZM40.5298
-                            22.4157C36.5781 25.5961 33.6185 27.581 30.8097 28.8837C28.0122 30.1812 25.3286 30.8186
-                            21.9049 31.256L22.0951 32.744C25.6135 32.2944 28.4591 31.6274 31.4408 30.2445C34.411
-                            28.8669 37.4804 26.7953 41.4702 23.5843L40.5298 22.4157Z"
-                            fill="white"
-                        />
+                            <path d="M38 30H37.25H38ZM38 40H38.75H38ZM42 40H42.75H42ZM42 30H41.25H42ZM22 38H22.75H22ZM22
+                                40H21.25H22ZM26 40H25.25H26ZM26 38H26.75H26ZM30 34H29.25H30ZM30 40H30.75H30ZM34 40H34.75H34ZM34
+                                34H33.25H34ZM39 21.25C38.5858 21.25 38.25 21.5858 38.25 22C38.25 22.4142
+                                38.5858 22.75 39 22.75V21.25ZM41.25 25C41.25 25.4142 41.5858 25.75 42 25.75C42.4142 25.75
+                                42.75 25.4142 42.75 25H41.25ZM41.4702 23.5843C41.7929 23.3246 41.844 22.8525 41.5843
+                                22.5298C41.3246 22.2071 40.8525 22.156 40.5298 22.4157L41.4702 23.5843ZM21.9049
+                                31.256C21.4941 31.3085 21.2035 31.6842 21.256 32.0951C21.3086 32.5059 21.6842 32.7965
+                                22.0951 32.744L21.9049 31.256ZM41.25 30V40H42.75V30H41.25ZM38.75 40V30H37.25V40H38.75ZM38.75
+                                30C38.75 29.3096 39.3096 28.75 40 28.75V27.25C38.4812 27.25 37.25 28.4812 37.25 30H38.75ZM40
+                                41.25C39.3096 41.25 38.75 40.6904 38.75 40H37.25C37.25 41.5188 38.4812 42.75 40
+                                42.75V41.25ZM41.25 40C41.25 40.6904 40.6904 41.25 40 41.25V42.75C41.5188 42.75 42.75
+                                41.5188 42.75 40H41.25ZM42.75 30C42.75 28.4812 41.5188 27.25 40 27.25V28.75C40.6904
+                                28.75 41.25 29.3096 41.25 30H42.75ZM25.25 38L25.25 40H26.75L26.75 38H25.25ZM22.75 40L22.75
+                                38H21.25L21.25 40H22.75ZM22.75 38C22.75 37.3096 23.3096 36.75 24 36.75V35.25C22.4812
+                                35.25 21.25 36.4812 21.25 38H22.75ZM24 41.25C23.3096 41.25 22.75 40.6904 22.75
+                                40H21.25C21.25 41.5188 22.4812 42.75 24 42.75V41.25ZM25.25 40C25.25 40.6904 24.6904
+                                41.25 24 41.25V42.75C25.5188 42.75 26.75 41.5188 26.75 40H25.25ZM26.75 38C26.75 36.4812
+                                25.5188 35.25 24 35.25V36.75C24.6904 36.75 25.25 37.3096 25.25 38H26.75ZM33.25
+                                34V40H34.75V34H33.25ZM30.75 40V34H29.25V40H30.75ZM30.75 34C30.75 33.3096 31.3096 32.75 32
+                                32.75V31.25C30.4812 31.25 29.25 32.4812 29.25 34H30.75ZM32 41.25C31.3096 41.25 30.75 40.6904
+                                30.75 40H29.25C29.25 41.5188 30.4812 42.75 32 42.75V41.25ZM33.25 40C33.25 40.6904 32.6904
+                                41.25 32 41.25V42.75C33.5188 42.75 34.75 41.5188 34.75 40H33.25ZM34.75 34C34.75
+                                32.4812 33.5188 31.25 32 31.25V32.75C32.6904 32.75 33.25 33.3096 33.25 34H34.75ZM39
+                                22.75H41V21.25H39V22.75ZM41.25 23V25H42.75V23H41.25ZM41 22.75C41.1381 22.75 41.25
+                                22.8619 41.25 23H42.75C42.75 22.0335 41.9665 21.25 41 21.25V22.75ZM40.5298
+                                22.4157C36.5781 25.5961 33.6185 27.581 30.8097 28.8837C28.0122 30.1812 25.3286 30.8186
+                                21.9049 31.256L22.0951 32.744C25.6135 32.2944 28.4591 31.6274 31.4408 30.2445C34.411
+                                28.8669 37.4804 26.7953 41.4702 23.5843L40.5298 22.4157Z"
+                                fill="white"
+                            />
                             <path d="M63.1393 32C63.6146 32 64.0012 31.6145 63.9884 31.1393C63.8263 25.1114 61.9637 19.2453
                                         58.607 14.2218C55.0908 8.95938 50.0931 4.85786 44.2459 2.43585C38.3986 0.0138507
                                         31.9645 -0.619856 25.7571 0.614871C19.8314 1.79356 14.3664 4.62442 9.98938
@@ -242,30 +244,30 @@ class SlideController {
                     </svg>
                 `);
                 const arrowRightBuffer = Buffer.from(`
-	<svg width="16" height="41" viewBox="0 0 16 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path d="M8.70711 40.7071C8.31658 41.0976 7.68342 41.0976 7.29289 40.7071L0.928932 34.3431C0.538408 33.9526 0.538408 33.3195 0.928932 32.9289C1.31946 32.5384 1.95262 32.5384 2.34315 32.9289L8 38.5858L13.6569 32.9289C14.0474 32.5384 14.6805 32.5384 15.0711 32.9289C15.4616 33.3195 15.4616 33.9526 15.0711 34.3431L8.70711 40.7071ZM9 0V40H7V0H9Z" fill="${colors.threats2opportunities_color}"/>
-	</svg>
-`)
+                    <svg width="16" height="41" viewBox="0 0 16 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.70711 40.7071C8.31658 41.0976 7.68342 41.0976 7.29289 40.7071L0.928932 34.3431C0.538408 33.9526 0.538408 33.3195 0.928932 32.9289C1.31946 32.5384 1.95262 32.5384 2.34315 32.9289L8 38.5858L13.6569 32.9289C14.0474 32.5384 14.6805 32.5384 15.0711 32.9289C15.4616 33.3195 15.4616 33.9526 15.0711 34.3431L8.70711 40.7071ZM9 0V40H7V0H9Z" fill="${colors.threats2opportunities_color}"/>
+                    </svg>
+                `)
                 const borderLeftTopBuffer = Buffer.from(`
-	<svg width="489" height="147" viewBox="0 0 489 147" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path d="M488 147L488 9C488 4.58173 484.418 1 480 1H8.99998C4.5817 1 0.999983 4.58172 0.999983 9V55.9174" stroke="${colors.strengths_color}"/>
-	</svg>
-`)
+                    <svg width="489" height="147" viewBox="0 0 489 147" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M488 147L488 9C488 4.58173 484.418 1 480 1H8.99998C4.5817 1 0.999983 4.58172 0.999983 9V55.9174" stroke="${colors.strengths_color}"/>
+                    </svg>
+                `)
                 const borderRightTopBuffer = Buffer.from(`
-	<svg width="489" height="147" viewBox="0 0 489 147" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path d="M488 147L488 9C488 4.58173 484.418 1 480 1H8.99998C4.5817 1 0.999983 4.58172 0.999983 9V55.9174" stroke="${colors.opportunities_color}"/>
-	</svg>
-`)
+                    <svg width="489" height="147" viewBox="0 0 489 147" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M488 147L488 9C488 4.58173 484.418 1 480 1H8.99998C4.5817 1 0.999983 4.58172 0.999983 9V55.9174" stroke="${colors.opportunities_color}"/>
+                    </svg>
+                `)
                 const borderLeftBottomBuffer = Buffer.from(`
-	<svg width="489" height="147" viewBox="0 0 489 147" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path d="M1 147L1 9C1 4.58173 4.58172 1 9 1H480C484.418 1 488 4.58172 488 9V55.9174" stroke="${colors.weaknesses_color}"/>
-	</svg>
-`)
+                    <svg width="489" height="147" viewBox="0 0 489 147" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 147L1 9C1 4.58173 4.58172 1 9 1H480C484.418 1 488 4.58172 488 9V55.9174" stroke="${colors.weaknesses_color}"/>
+                    </svg>
+                `)
                 const borderRightBottomBuffer = Buffer.from(`
-	<svg width="489" height="147" viewBox="0 0 489 147" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path d="M1 147L1 9C1 4.58173 4.58172 1 9 1H480C484.418 1 488 4.58172 488 9V55.9174" stroke="${colors.threats_color}"/>
-	</svg>
-`)
+                    <svg width="489" height="147" viewBox="0 0 489 147" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 147L1 9C1 4.58173 4.58172 1 9 1H480C484.418 1 488 4.58172 488 9V55.9174" stroke="${colors.threats_color}"/>
+                    </svg>
+                `)
 
                 let pptx = new pptxgen();
                 //=========================================================================
@@ -472,8 +474,6 @@ class SlideController {
                                                 sharp(logoSvgBuffer)
                                                     .toFile(`${dirUploadPpt}/SWOT.png`, (err, info) => {
                                                         let slide = pptx.addSlide();
-
-                                                        console.log('Parsed Data', parsedData);
                                                         slide.addText(
                                                             [
                                                                 { text: "Strength", options: { fontSize: 16, color: colors.strengths_color, bold: true } },
@@ -725,6 +725,21 @@ class SlideController {
                                                         slide.addImage({ x: 9.53, y: 0.7, w: 0.3, h: 0.3, path: `${dirUploadPpt}/rightTop.png` });
                                                         slide.addImage({ x: 9.53, y: 4.35, w: 0.3, h: 0.3, path: `${dirUploadPpt}/rightBottom.png` });
                                                         slide.addImage({ x: 3.975, y: 1.85, w: 2, h: 2, path: `${dirUploadPpt}/SWOT.png` });
+
+                                                        // add company name, headline and logo
+                                                        let infoArr = [];
+                                                        infoArr.push({ text: parsedData.companyData.company_name, options: { paraSpaceAfter: 0.9, fontSize: 7.0, breakLine: true, lineSpacing: 7, fontFace: 'Helvetica Neue', valign: 'right' } });
+                                                        infoArr.push({ text: parsedData.companyData.company_headline, options: { paraSpaceAfter: 0.9, fontSize: 7.0, breakLine: true, lineSpacing: 7, fontFace: 'Helvetica Neue', valign: 'right' } });
+
+                                                        slide.addText(
+                                                            infoArr,
+                                                            { x: 0.05, y: 4.85, w: 3.85, h: 1.2, rectRadius: 0.2, valign: 'middle', paraSpaceAfter: 1.0, fontSize: 7.0,}
+                                                        );
+                                                        slide.addImage({ x: 9.45, y: 5.3, w: 0.3, h: 0.3, path: `${dirUploadLogos}/${parsedData.companyData.company_logo}` });
+
+                                                        // ${process.env.API_URL}/uploads/logos/${data.company_logo}
+                                                        // slide.addImage({ x: 3.975, y: 1.85, w: 2, h: 2, path: `${dirUploadPpt}/SWOT.png` });
+
 
                                                         // EXAMPLE 1: Saves output file to the local directory where this process is running
                                                         pptx.writeFile({ fileName: `${exportName}/swot` })
