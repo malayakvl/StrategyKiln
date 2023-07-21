@@ -136,7 +136,7 @@ class SlideController {
                     stream.end(htmlNewContent);
                 });
                 await url2pdf.renderPdf(htmlFileName, {
-                    paperSize: {orientation: "landscape"},
+                    paperSize: {orientation: "landscape", margin: '0cm'},
                     saveDir: process.env.FS_PDF_FOLDER,
                     idLength: 30,
                     possibleIdChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
@@ -523,7 +523,7 @@ class SlideController {
                                                         }
                                                         slide.addText(
                                                             strengthDataArr,
-                                                            { x: 0.35, y: 0.5, w: 3.8, h: 1.4, valign: 'middle' }
+                                                            { x: 0.35, y: 0.6, w: 3.8, h: 1.4, valign: 'middle' }
                                                         );
                                                         // weaknesess text
                                                         // let weaknessesText1 = parsedData.weaknessesData.weaknesses_0_description ? parsedData.weaknessesData.weaknesses_0_description : '';

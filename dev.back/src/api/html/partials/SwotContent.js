@@ -1,18 +1,63 @@
 export const companyContent = (data) => {
     return `
         <div style="float:right;">
-            <div style="float:left;margin-top: -10px;">
-                <span style="margin-top: 10px;display: block;margin-bottom: 5px;font-size: 11px;line-height: 10px;">${data.company_name}</span>
-                <span style="display: block;font-size: 11px;line-height: 10px;">${data.company_headline}</span>
+            <div style="float:left;margin-top:10px;">
+            ${data.company_logo ?
+        `<img style="width: auto;height:30px;" src="${process.env.API_URL}/uploads/logos/${data.company_logo}" alt="" />`
+        : ''
+    }
             </div>
         </div>
-        <div style="float:left;margin-top: -20px;">
-        ${data.company_logo ? 
-            `<img style="width: auto;height:40px;" src="${process.env.API_URL}/uploads/logos/${data.company_logo}" alt="" />`
-            : ''
-        }
+        <div style="float:left;">
+                <span style="margin-top: 10px;display: block;margin-bottom: 5px;font-size: 11px;line-height: 10px;">${data.company_name}</span>
+                <span style="display: block;font-size: 11px;line-height: 10px;">${data.company_headline}</span>
         </div>
     `
+}
+
+export const calcTopContent = (dataStrength, dataThreats) => {
+    let strengthsContentDataCnt = 0;
+    Object.keys(dataStrength).forEach((key, index) => {
+        if (dataStrength[key]) {
+            strengthsContentDataCnt = strengthsContentDataCnt + dataStrength[`strengths_${index}_description`]?.length;
+        }
+    });
+    let threatContentDataCnt = 0;
+    Object.keys(dataThreats).forEach((key, index) => {
+        if (dataThreats[key]) {
+            threatContentDataCnt = threatContentDataCnt + dataThreats[`threats_${index}_description`]?.length;
+        }
+    });
+    // console.log(strengthsContentDataCnt, threatContentDataCnt);
+    if (strengthsContentDataCnt > 450 || threatContentDataCnt > 450) {
+        return '55vh'
+    } else if (strengthsContentDataCnt < 100 && threatContentDataCnt < 100) {
+        return "35vh"
+    } else {
+        return "45vh";
+    }
+}
+export const calcBottomContent = (dataWeak, dataOppo) => {
+    let weaknessesContentDataCnt = 0;
+    Object.keys(dataWeak).forEach((key, index) => {
+        if (dataWeak[key]) {
+            weaknessesContentDataCnt = weaknessesContentDataCnt + dataWeak[`weaknesses_${index}_description`]?.length;
+        }
+    });
+    let oppoContentDataCnt = 0;
+    Object.keys(dataOppo).forEach((key, index) => {
+        if (dataOppo[key]) {
+            oppoContentDataCnt = oppoContentDataCnt + dataOppo[`opportunities_${index}_description`]?.length;
+        }
+    });
+    // console.log(strengthsContentDataCnt, threatContentDataCnt);
+    if (oppoContentDataCnt > 450 || weaknessesContentDataCnt > 450) {
+        return '55vh'
+    } else if (oppoContentDataCnt < 100 && weaknessesContentDataCnt < 100) {
+        return "35vh"
+    } else {
+        return "45vh";
+    }
 }
 
 export const strenthsContent = (data) => {
