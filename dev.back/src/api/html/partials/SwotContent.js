@@ -74,7 +74,8 @@ export const strenthsContent = (data) => {
     // });
     // const contentKey = ['strengths_0_description', 'strengths_1_description', 'strengths_2_description', 'strengths_3_description', 'strengths_4_description']
     Object.keys(data).forEach((key, index) => {
-        if (data[key]) {
+        console.log(data[key]);
+        if (data[key] && typeof data[`strengths_${index}_description`] !== 'undefined') {
             strengthsContentData +=
                 `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
                     ${data[`strengths_${index}_description`]}
@@ -97,7 +98,7 @@ export const strenthsContent = (data) => {
 export const weaknessesContent = (data) => {
     let weaknessesContentData = '';
     Object.keys(data).forEach((key, index) => {
-        if (data[key]) {
+        if (data[key] && typeof data[`weaknesses_${index}_description`] !== 'undefined') {
             weaknessesContentData +=
                 `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
                     ${data[`weaknesses_${index}_description`]}
@@ -122,7 +123,7 @@ export const threatsContent = (data) => {
     let threatsContentData = '';
 
     Object.keys(data).forEach((key, index) => {
-        if (data[key]) {
+        if (data[key] && typeof data[`threats_${index}_description`] !== 'undefined') {
             threatsContentData +=
                 `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
                     ${data[`threats_${index}_description`]}
@@ -145,7 +146,7 @@ export const threatsContent = (data) => {
 export const opportunitiesContent = (data) => {
     let opportunitiesContentData = '';
     Object.keys(data).forEach((key, index) => {
-        if (data[key]) {
+        if (data[key]&& typeof data[`opportunities_${index}_description`] !== 'undefined') {
             opportunitiesContentData +=
                 `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;margin-right: 10px;">
                     ${data[`opportunities_${index}_description`]}
@@ -178,7 +179,7 @@ export const threats2OpportunitiesContent = (data) => {
                     "
             >`;
     Object.keys(data.threats2OpportunitiesData).forEach((key, index) => {
-        if (data.threats2OpportunitiesData[key]) {
+        if (data.threats2OpportunitiesData[key] && typeof data.threats2OpportunitiesData[key] !== 'undefined') {
             contentData +=
                 `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
                    ${data.threats2OpportunitiesData[key]}
@@ -247,7 +248,7 @@ export const weaknesses2StrengthsContent = (data) => {
         'weaknesses2Strengths_4_description',
     ]
     Object.keys(data.weaknesses2StrengthsData).forEach((key, index) => {
-        if (data.weaknesses2StrengthsData[key] && keysWeaknesses2Strengths.includes(key)) {
+        if ((data.weaknesses2StrengthsData[key] && typeof data.weaknesses2StrengthsData[key] !== 'undefined') && keysWeaknesses2Strengths.includes(key)) {
             contentData +=
                 `<p style="margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
                    ${data.weaknesses2StrengthsData[key]}
