@@ -19,6 +19,7 @@ import {
   Threats2Opportunities,
   Weaknesses2Strengths,
   SwotIcon,
+  Company,
 } from "../../components/SwotElements/index";
 import { colorDataSelector } from "../../redux/customerData/selectors";
 import { fileNameSelector } from "../../redux/layouts/selectors";
@@ -275,6 +276,11 @@ export default function ResourcesPreview() {
         <div className="clearfix"></div>
       </div>
       <div className="clearfix"></div>
+      {/* ===============================  Company block content =============================*/}
+      <Company />
+      <div className="clearfix"></div>
+      {/* ===============================  Buttons block content =============================*/}
+
       {/* ===============================  Buttons block content =============================*/}
       <div className="swot-block-button">
         <div className="row buttons-block g-0">

@@ -15,3 +15,4 @@ export { default as ThreatsInfo } from "./info/Threats";
 export { default as OpportunitiesInfo } from "./info/Opportunities";
 export { default as Threats2Opportunities } from "./info/Threats2Opportunities";
 export { default as Weaknesses2Strengths } from "./info/Weaknesses2Strengths";
+export { default as Company } from "./company/Company";
