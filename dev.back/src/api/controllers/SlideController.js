@@ -491,13 +491,13 @@ class SlideController {
 
                                                         slide.addText(
                                                             [
-                                                                { text: "Strength", options: { fontSize: 16, color: colors.strengths_color, bold: true } },
+                                                                { text: "Strength", options: { fontSize: 16, color: colors.strengths_color, bold: false, fontFace: 'Helvetica Neue' } },
                                                             ],
                                                             { x: 0.35, y: 0.3, w: 3.7, h: 0.2 }
                                                         );
                                                         slide.addText(
                                                             [
-                                                                { text: "Weaknesses", options: { fontSize: 16, color: colors.weaknesses_color, bold: true } },
+                                                                { text: "Weaknesses", options: { fontSize: 16, color: colors.weaknesses_color, bold: false, fontFace: 'Helvetica Neue' } },
                                                             ],
                                                             { x: 0.35, y: 3.6, w: 3.7, h: 0.2 }
                                                         );
@@ -523,7 +523,7 @@ class SlideController {
                                                         }
                                                         slide.addText(
                                                             strengthDataArr,
-                                                            { x: 0.35, y: 0.6, w: 3.8, h: 1.4, valign: 'middle' }
+                                                            { x: 0.35, y: 0.6, w: 3.8, h: 1.4, valign: 'middle', fontFace: 'Helvetica Neue' }
                                                         );
                                                         // weaknesess text
                                                         // let weaknessesText1 = parsedData.weaknessesData.weaknesses_0_description ? parsedData.weaknessesData.weaknesses_0_description : '';
@@ -552,7 +552,7 @@ class SlideController {
                                                         }
                                                         slide.addText(
                                                             weakDataArr,
-                                                            { x: 0.35, y: 3.8, w: 3.8, valign: 'middle', align: 'left', h: 1.4 }
+                                                            { x: 0.35, y: 3.8, w: 3.8, valign: 'middle', align: 'left', h: 1.4, fontFace: 'Helvetica Neue' }
                                                         );
 
                                                         // =============================================================
@@ -570,7 +570,7 @@ class SlideController {
                                                         }
                                                         slide.addText(
                                                             weaknesses2strengthArr,
-                                                            { x: 0.425, y: 2.2, w: 3.45, fill: { color: colors.weaknesses2strengths_color }, h: 1.2, shape: 'roundRect', rectRadius: 0.2, valign: 'middle'}
+                                                            { x: 0.425, y: 2.2, w: 3.45, fill: { color: colors.weaknesses2strengths_color }, h: 1.2, shape: 'roundRect', rectRadius: 0.2, valign: 'middle', color: 'FFFFFF', fontFace: 'Helvetica Neue'}
                                                         );
 
                                                         slide.addImage({ x: 2.1, y: 1.9, w: 0.15, h: 0.3, path: `${dirUploadPpt}/leftArrow.png` });
@@ -579,13 +579,13 @@ class SlideController {
                                                         // RIGHT BLOCK SLIDE
                                                         slide.addText(
                                                             [
-                                                                { text: "Threats", options: { fontSize: 16, color: colors.threats_color, breakLine: true, bold: true } },
+                                                                { text: "Threats", options: { fontSize: 16, color: colors.threats_color, breakLine: true, bold: false, fontFace: 'Helvetica Neue' } },
                                                             ],
                                                             { x: 5.95, y: 0.3, w: 3.7, h: 0.2 }
                                                         );
                                                         slide.addText(
                                                             [
-                                                                { text: "Opportunities", options: { fontSize: 16, color: colors.opportunities_color, breakLine: true, bold: true } },
+                                                                { text: "Opportunities", options: { fontSize: 16, color: colors.opportunities_color, breakLine: true, bold: false, fontFace: 'Helvetica Neue' } },
                                                             ],
                                                             { x: 5.95, y: 3.6, w: 3.7, h: 0.2 }
                                                         );
@@ -610,7 +610,7 @@ class SlideController {
                                                         }
                                                         slide.addText(
                                                             threatsArr,
-                                                            { x: 5.95, y: 0.6, w: 3.7, h: 1.4, valign: 'middle' }
+                                                            { x: 5.95, y: 0.6, w: 3.7, h: 1.4, valign: 'middle', fontFace: 'Helvetica Neue' }
                                                         );
 
                                                         // =============================================================
@@ -634,7 +634,7 @@ class SlideController {
                                                         }
                                                         slide.addText(
                                                             oppoArr,
-                                                            { x: 5.95, y: 3.8, w: 3.7, valign: 'middle', align: 'left', h: 1.4 }
+                                                            { x: 5.95, y: 3.8, w: 3.7, valign: 'middle', align: 'left', h: 1.4, fontFace: 'Helvetica Neue' }
                                                         );
 
                                                         // =============================================================
@@ -652,7 +652,7 @@ class SlideController {
                                                         }
                                                         slide.addText(
                                                             threats2oppoArr,
-                                                            { x: 6.05, y: 2.15, w: 3.55, fill: { color: colors.threats2opportunities_color }, h: 1.2, shape: 'roundRect', rectRadius: 0.2, valign: 'middle'}
+                                                            { x: 6.05, y: 2.15, w: 3.55, fill: { color: colors.threats2opportunities_color }, h: 1.2, shape: 'roundRect', rectRadius: 0.2, valign: 'middle', color: 'FFFFFF', fontFace: 'Helvetica Neue'}
                                                         );
 
                                                         // add company name, headline and logo
