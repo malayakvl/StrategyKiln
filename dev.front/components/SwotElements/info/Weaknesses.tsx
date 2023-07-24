@@ -13,7 +13,7 @@ const Weaknesses: React.FC = () => {
   useEffect(() => {}, [modalSelector]);
 
   return (
-    <div className="info">
+    <div className="info" style={{ whiteSpace: "pre-wrap" }}>
       {weaknessesData?.weaknesses_0_description && (
         <p>{weaknessesData?.weaknesses_0_description}</p>
       )}

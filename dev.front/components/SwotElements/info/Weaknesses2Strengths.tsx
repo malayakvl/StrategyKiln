@@ -15,19 +15,29 @@ const Weaknesses2Strengths: React.FC = () => {
   return (
     <>
       {threatsData?.weaknesses2Strengths_0_description && (
-        <p>{threatsData?.weaknesses2Strengths_0_description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>
+          {threatsData?.weaknesses2Strengths_0_description}
+        </p>
       )}
       {threatsData?.weaknesses2Strengths_1_description && (
-        <p>{threatsData?.weaknesses2Strengths_1_description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>
+          {threatsData?.weaknesses2Strengths_1_description}
+        </p>
       )}
       {threatsData?.weaknesses2Strengths_2_description && (
-        <p>{threatsData?.weaknesses2Strengths_2_description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>
+          {threatsData?.weaknesses2Strengths_2_description}
+        </p>
       )}
       {threatsData?.weaknesses2Strengths_3_description && (
-        <p>{threatsData?.weaknesses2Strengths_3_description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>
+          {threatsData?.weaknesses2Strengths_3_description}
+        </p>
       )}
       {threatsData?.weaknesses2Strengths_4_description && (
-        <p>{threatsData?.weaknesses2Strengths_4_description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>
+          {threatsData?.weaknesses2Strengths_4_description}
+        </p>
       )}
     </>
   );

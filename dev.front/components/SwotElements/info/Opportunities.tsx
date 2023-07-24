@@ -13,7 +13,7 @@ const Opportunities: React.FC = () => {
   useEffect(() => {}, [modalSelector]);
 
   return (
-    <div className="info">
+    <div className="info" style={{ whiteSpace: "pre-wrap" }}>
       {opportunitiesData?.opportunities_0_description && (
         <p>{opportunitiesData?.opportunities_0_description}</p>
       )}

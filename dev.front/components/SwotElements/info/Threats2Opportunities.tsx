@@ -15,19 +15,29 @@ const Threats2Opportunities: React.FC = () => {
   return (
     <>
       {threatsData?.threats2Opportunities_0_description && (
-        <p>{threatsData?.threats2Opportunities_0_description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>
+          {threatsData?.threats2Opportunities_0_description}
+        </p>
       )}
       {threatsData?.threats2Opportunities_1_description && (
-        <p>{threatsData?.threats2Opportunities_1_description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>
+          {threatsData?.threats2Opportunities_1_description}
+        </p>
       )}
       {threatsData?.threats2Opportunities_2_description && (
-        <p>2{threatsData?.threats2Opportunities_2_description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>
+          2{threatsData?.threats2Opportunities_2_description}
+        </p>
       )}
       {threatsData?.threats2Opportunities_3_description && (
-        <p>3{threatsData?.threats2Opportunities_3_description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>
+          3{threatsData?.threats2Opportunities_3_description}
+        </p>
       )}
       {threatsData?.threats2Opportunities_4_description && (
-        <p>4{threatsData?.threats2Opportunities_4_description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>
+          4{threatsData?.threats2Opportunities_4_description}
+        </p>
       )}
     </>
   );

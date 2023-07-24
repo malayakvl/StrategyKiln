@@ -13,7 +13,7 @@ const Threats: React.FC = () => {
   useEffect(() => {}, [modalSelector]);
 
   return (
-    <div className="info">
+    <div className="info" style={{ whiteSpace: "pre-wrap" }}>
       {threatsData?.threats_0_description && (
         <p>{threatsData?.threats_0_description}</p>
       )}

@@ -153,7 +153,7 @@ export const getHtmlTableNewTemplate = (data) =>
                                 <tr>
                                     <td style="position: relative;">
 <!--                                        <div style="width:1px;background: #ED5829;right: 0;position: absolute; top:-4px;"></div>-->
-                                        <div style="margin-left: 24px;margin-top:0px;font-family: 'Raleway',serif;">
+                                        <div style="margin-left: 24px;margin-top:0px;font-family: 'Raleway',serif;text-align: left;">
                                             ${strenthsContent(data.strengthsData)}
                                         </div>
                                     </td>

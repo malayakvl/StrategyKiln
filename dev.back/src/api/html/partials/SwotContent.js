@@ -78,7 +78,7 @@ export const strenthsContent = (data) => {
         if (data[key] && typeof data[`strengths_${index}_description`] !== 'undefined') {
             strengthsContentData +=
                 `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
-                    ${data[`strengths_${index}_description`]}
+                    ${data[`strengths_${index}_description`].replace(/(?:\r\n|\r|\n)/g, '<br />')}
             </p>
             `;
         }
@@ -101,7 +101,7 @@ export const weaknessesContent = (data) => {
         if (data[key] && typeof data[`weaknesses_${index}_description`] !== 'undefined') {
             weaknessesContentData +=
                 `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
-                    ${data[`weaknesses_${index}_description`]}
+                    ${data[`weaknesses_${index}_description`].replace(/(?:\r\n|\r|\n)/g, '<br />')}
             </p>
             `;
         }
@@ -126,7 +126,7 @@ export const threatsContent = (data) => {
         if (data[key] && typeof data[`threats_${index}_description`] !== 'undefined') {
             threatsContentData +=
                 `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
-                    ${data[`threats_${index}_description`]}
+                    ${data[`threats_${index}_description`].replace(/(?:\r\n|\r|\n)/g, '<br />')}
             </p>
             `;
         }
@@ -149,7 +149,7 @@ export const opportunitiesContent = (data) => {
         if (data[key]&& typeof data[`opportunities_${index}_description`] !== 'undefined') {
             opportunitiesContentData +=
                 `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;margin-right: 10px;">
-                    ${data[`opportunities_${index}_description`]}
+                    ${data[`opportunities_${index}_description`].replace(/(?:\r\n|\r|\n)/g, '<br />')}
             </p>
             `;
         }
@@ -182,7 +182,7 @@ export const threats2OpportunitiesContent = (data) => {
         if (data.threats2OpportunitiesData[key] && typeof data.threats2OpportunitiesData[key] !== 'undefined') {
             contentData +=
                 `<p style="overflow-wrap: break-word;margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
-                   ${data.threats2OpportunitiesData[key]}
+                   ${data.threats2OpportunitiesData[key].replace(/(?:\r\n|\r|\n)/g, '<br />')}
             </p>
             `;
         }
@@ -251,7 +251,7 @@ export const weaknesses2StrengthsContent = (data) => {
         if ((data.weaknesses2StrengthsData[key] && typeof data.weaknesses2StrengthsData[key] !== 'undefined') && keysWeaknesses2Strengths.includes(key)) {
             contentData +=
                 `<p style="margin-bottom:0;padding-bottom: 0;padding-top:0;font-size: 9px;margin-top:3px;display: block;text-align:left;">
-                   ${data.weaknesses2StrengthsData[key]}
+                   ${data.weaknesses2StrengthsData[key].replace(/(?:\r\n|\r|\n)/g, '<br />')}
             </p>
             `;
         }
